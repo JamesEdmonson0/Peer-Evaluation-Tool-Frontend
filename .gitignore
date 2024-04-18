@@ -1,0 +1,11 @@
+target/
+
+##Intellij IDEA ##
+.idea
+
+## VS Code ##
+.vscode/
+
+.DS_Store
+
+node_modules

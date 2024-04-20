@@ -1,6 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
+
+function logout() {
+  localStorage.removeItem('authToken'); // Remove the token from local storage
+  delete axios.defaults.headers.common['Authorization']; // Clear the auth header
+  this.$router.push('/login'); // Redirect the user to the login page
+};
+
 </script>
 
 <template>
@@ -13,6 +21,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/war">WAR</RouterLink>
+        <button @click="logout">Logout</button>
+        <
       </nav>
     </div>
   </header>

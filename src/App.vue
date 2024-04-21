@@ -22,6 +22,9 @@ function logout() {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/war">WAR</RouterLink>
+        <RouterLink to="/searchStudent">Search</RouterLink>
+        <RouterLink to="/createStudent">Create</RouterLink>
+        <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
         <button @click="logout">Logout</button>
         <
       </nav>

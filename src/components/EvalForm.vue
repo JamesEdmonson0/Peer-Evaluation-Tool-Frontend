@@ -61,4 +61,9 @@ td {
 }
 </style>
 
+<!--
 
+  need to either modifify the student dto to include team, rather than just team name,
+  of need a seperate endpoint to get the team members of the current users team
+
+-->

@@ -8,12 +8,10 @@ const router = createRouter({
     {
       path: '/login',
       component: Login
-
     },
     {
       path: '/',
       component: HomeView,
-      meta: { requiresAuth: true }
     },
     {
       path: '/about',
@@ -25,6 +23,19 @@ const router = createRouter({
       component: () => import('../views/WARView.vue'),
       meta: { requiresAuth: true } 
     },
+    {
+      path: '/searchStudent',
+      component: () => import('@/components/StudentSearch.vue')
+    },
+    {
+      path: '/createStudent',
+      component: () => import('@/components/CreateStudent.vue')
+    },
+    {
+      path: '/viewStudentPeerEvalReport',
+      component: () => import('@/components/PeerEvalReportByStudent.vue')
+    },
+    
   ]
 });
 

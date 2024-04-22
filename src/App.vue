@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import LogOutButton from './components/LogOutButton.vue'
-import FlipAuth from     './components/DELETE_FlipAuth.vue'
+import FlipAuth from     './components/DevOnly/DELETE_FlipAuth.vue'
 import LoginView from './views/LoginView.vue';
 </script>
 
@@ -13,7 +13,6 @@ import LoginView from './views/LoginView.vue';
       <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
       <div class="wrapper">
         <HelloWorld msg="You did it, Aliya! Logged In" />
-
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
@@ -37,10 +36,6 @@ import LoginView from './views/LoginView.vue';
       </div>
     </header>
     <LoginView></LoginView>
-  </div>
-
-  <div>
-    
   </div>
 </template>
 

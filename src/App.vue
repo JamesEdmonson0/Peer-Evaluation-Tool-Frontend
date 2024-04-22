@@ -1,37 +1,47 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import axios from 'axios';
-
-function logout() {
-  localStorage.removeItem('authToken'); // Remove the token from local storage
-  delete axios.defaults.headers.common['Authorization']; // Clear the auth header
-  this.$router.push('/login'); // Redirect the user to the login page
-};
-
+import LogOutButton from './components/LogOutButton.vue'
+import FlipAuth from     './components/DELETE_FlipAuth.vue'
+import LoginView from './views/LoginView.vue';
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <FlipAuth></FlipAuth>
+  <div v-if="$store.state.isAuthenticated">
+    <header>
+      <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
+      <div class="wrapper">
+        <HelloWorld msg="You did it, Aliya! Logged In" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/war">WAR</RouterLink>
+          <RouterLink to="/searchStudent">Search</RouterLink>
+          <RouterLink to="/createStudent">Create</RouterLink>
+          <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
+          <RouterLink to="/warMenu">WARMenu</RouterLink>
+          <RouterLink to="/evalForm">Submit Eval</RouterLink>
+          <LogOutButton></LogOutButton>
+        </nav>
+      </div>
+    </header>
+    <RouterView />
+  </div>
+  <div v-if="!$store.state.isAuthenticated">
+    <header>
+      <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
+      <div class="wrapper">
+        <HelloWorld msg="You did it, Aliya! Logged In" />
+      </div>
+    </header>
+    <LoginView></LoginView>
+  </div>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/war">WAR</RouterLink>
-        <RouterLink to="/searchStudent">Search</RouterLink>
-        <RouterLink to="/createStudent">Create</RouterLink>
-        <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
-        <button @click="logout">Logout</button>
-        <
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div>
+    
+  </div>
 </template>
 
 <style scoped>

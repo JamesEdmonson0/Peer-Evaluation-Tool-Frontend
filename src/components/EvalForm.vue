@@ -7,6 +7,7 @@
       </div>
       <button type="submit">Submit</button>
     </form>
+    
   </div>
 </template>
 
@@ -50,8 +51,9 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  height: 100vh;           /* Full height of the viewport */
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full height of the viewport */
+  flex-direction: column;
 }
 table,
 th,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Student Search</h1>
     <form @submit.prevent="searchStudents">
       <input v-model="searchParams.firstName" type="text" placeholder="First Name" />
@@ -73,6 +73,13 @@ export default {
 <style scoped>
 input {
   margin: 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full height of the viewport */
+  flex-direction: column;
 }
 </style>
 

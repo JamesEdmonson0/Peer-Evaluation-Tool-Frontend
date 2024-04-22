@@ -93,8 +93,10 @@ export default {
 </script>
 
 <style scoped>
-  .container {
-    width: 50%;
-    margin: auto;
-  }
+.container {
+  display: flex;
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full height of the viewport */
+  flex-direction: column;
+}
 </style>

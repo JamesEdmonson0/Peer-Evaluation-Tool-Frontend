@@ -1,7 +1,7 @@
 <script setup>
-import WARForm from '@/components/WARForm.vue';
+import WARNew from '@/components/WARNew.vue';
 </script>
 
 <template>
-  <WARForm></WARForm>
+  <WARNew></WARNew>
 </template>

@@ -8,11 +8,11 @@
       </div>
       <div class="form-item">
         <label for="password">Password:</label>
-        <input id="password" type="text" v-model="newStudentData.user.password" required/>
+        <input id="password" type="password" v-model="newStudentData.user.password" required/>
       </div>
       <div class="form-item">
         <label for="password2">Retype Password:</label>
-        <input id="password2" type="text" v-model="password2" required/>
+        <input id="password2" type="password" v-model="password2" required/>
       </div>
       <div class="form-item">
         <label for="firstName">First name:</label>

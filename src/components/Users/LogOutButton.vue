@@ -9,6 +9,7 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem("authToken"); // Remove the token from local storage
+      localStorage.removeItem("student");
       delete axios.defaults.headers.common["Authorization"]; // Clear the auth header
       this.$store.commit("setAuthentication", false);
       this.$router.push("/login"); // Redirect the user to the login page

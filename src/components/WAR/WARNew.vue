@@ -48,6 +48,8 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary" @click="this.$router.push('/war');">Back</button>
+
     </form>
   </div>
 </template>

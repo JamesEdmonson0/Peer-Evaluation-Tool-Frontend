@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Login from '../components/LoginForm.vue';
+import Login from '../components/Users/LoginForm.vue';
+import store from '../store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,37 +23,47 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/searchStudent',
+      name: 'Search Students',
+      component: () => import('@/components/Student/StudentSearch.vue')
+    },
+    {
+      path: '/studentDetails/:id',
+      name: 'Student Details',
+      component: () => import('@/components/Student/StudentDetails.vue'),
+      props: true,
+    },
+    {
+      path: '/createStudent',
+      name: 'Create Students',
+      component: () => import('@/components/Student/CreateStudent.vue')
+    },
+    {
+      path: '/viewStudentPeerEvalReport',
+      name: 'View Student Peer Eval Report',
+      component: () => import('@/components/PeerEval/PeerEvalReportByStudent.vue')
+    },
+    {
+      path: '/evalForm',
+      name: 'Eval Form',
+      component: () => import('@/components/PeerEval/EvalForm.vue')
+    },
+    {
+      path: '/menu',
+      name: 'WAR Menu',
+      component: () => import('@/components/WAR/WARAction.vue')
+    },
+    {
       path: '/war',
       name: 'WAR',
       component: () => import('../views/WARView.vue'),
       meta: { requiresAuth: true } 
     },
     {
-      path: '/searchStudent',
-      name: 'Search Students',
-      component: () => import('@/components/StudentSearch.vue')
+      path: '/new',
+      name: 'New War',
+      component: () => import('@/components/WAR/WARNew.vue'),
     },
-    {
-      path: '/createStudent',
-      name: 'Create Students',
-      component: () => import('@/components/CreateStudent.vue')
-    },
-    {
-      path: '/viewStudentPeerEvalReport',
-      name: 'View Student Peer Eval Report',
-      component: () => import('@/components/PeerEvalReportByStudent.vue')
-    },
-    {
-      path: '/warMenu',
-      name: 'WAR Menu',
-      component: () => import('@/components/WARAction.vue')
-    },
-    {
-      path: '/evalForm',
-      name: 'Eval Form',
-      component: () => import('@/components/EvalForm.vue')
-    },
-    
   ]
 });
 

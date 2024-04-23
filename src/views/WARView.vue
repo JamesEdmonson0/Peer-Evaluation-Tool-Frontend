@@ -1,7 +1,9 @@
 <script setup>
-import WARNew from '@/components/WARNew.vue';
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <WARNew></WARNew>
+<RouterLink to="/new">New</RouterLink>
+
+<RouterView></RouterView>
 </template>

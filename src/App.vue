@@ -1,14 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import LogOutButton from './components/LogOutButton.vue'
+import LogOutButton from './components/Users/LogOutButton.vue'
 import FlipAuth from     './components/DevOnly/DELETE_FlipAuth.vue'
 import LoginView from './views/LoginView.vue';
+
+let student = JSON.parse(localStorage.getItem("student"))
+const detailsURL = '/studentDetails/' + student.id
+
 </script>
 
 <template>
   <FlipAuth></FlipAuth>
-  <div v-if="$store.state.isAuthenticated">
+  <div v-if="$store.state.isAuthenticated" class="container">
     <header>
       <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
       <div class="wrapper">
@@ -16,11 +20,12 @@ import LoginView from './views/LoginView.vue';
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/war">WAR</RouterLink>
+          <RouterLink to="/menu">WAR</RouterLink>
           <RouterLink to="/searchStudent">Search</RouterLink>
+          <RouterLink :to=detailsURL>Details</RouterLink>
           <RouterLink to="/createStudent">Create</RouterLink>
           <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
-          <RouterLink to="/warMenu">WARMenu</RouterLink>
+          <RouterLink to="/war">WARMenu</RouterLink>
           <RouterLink to="/evalForm">Submit Eval</RouterLink>
           <LogOutButton></LogOutButton>
         </nav>
@@ -28,11 +33,11 @@ import LoginView from './views/LoginView.vue';
     </header>
     <RouterView />
   </div>
-  <div v-if="!$store.state.isAuthenticated">
+  <div v-if="!$store.state.isAuthenticated" class="container">
     <header>
       <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
       <div class="wrapper">
-        <HelloWorld msg="You did it, Aliya! Logged In" />
+        <HelloWorld msg="You did it, Aliya! Logged Out" />
       </div>
     </header>
     <LoginView></LoginView>
@@ -40,6 +45,13 @@ import LoginView from './views/LoginView.vue';
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full height of the viewport */
+  flex-direction: column;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;

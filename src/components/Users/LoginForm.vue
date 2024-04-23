@@ -27,9 +27,13 @@ export default {
         headers: { 'Authorization': basicAuth }
       })
         .then(response => {
-          // console.log(response.data.data.token);
+          console.log(response.data.data);
           const token = response.data.data.token; // Assuming the token is returned in response data
           localStorage.setItem('authToken', token); // Storing token in local storage
+
+          const student = response.data.data.userInfo.student;
+          localStorage.setItem('student', JSON.stringify(student));
+
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Setting default header
           this.$store.commit('setAuthentication', true);
           this.$router.push('/'); // Redirecting to the home route

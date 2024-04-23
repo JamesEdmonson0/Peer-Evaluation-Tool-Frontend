@@ -1,5 +1,5 @@
 <script setup>
-import EvalForm from '../components/EvalForm.vue'
+import EvalForm from '../components/PeerEval/EvalForm.vue'
 </script>
 
 <template>

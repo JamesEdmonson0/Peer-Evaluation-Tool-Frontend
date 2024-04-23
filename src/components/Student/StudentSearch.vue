@@ -17,7 +17,7 @@
         <hr>
         <li v-for="student in students" :key="student.id">
           <div>
-            <h2>{{ student.firstName }} {{ student.lastName }}</h2>
+            <RouterLink :to="`/studentDetails/${student.id}`"><h2>{{ student.firstName }} {{ student.lastName }}</h2></RouterLink>
             Section: {{ student.section }} 
             Academic Year: {{ student.academicYear }}
             Team Name: {{ student.teamName }}

@@ -4,10 +4,6 @@ import HelloWorld from './components/HelloWorld.vue'
 import LogOutButton from './components/Users/LogOutButton.vue'
 import FlipAuth from     './components/DevOnly/DELETE_FlipAuth.vue'
 import LoginView from './views/LoginView.vue';
-
-let student = JSON.parse(localStorage.getItem("student"))
-const detailsURL = '/studentDetails/' + student.id
-
 </script>
 
 <template>
@@ -22,7 +18,7 @@ const detailsURL = '/studentDetails/' + student.id
           <RouterLink to="/about">About</RouterLink>
           <RouterLink to="/menu">WAR</RouterLink>
           <RouterLink to="/searchStudent">Search</RouterLink>
-          <RouterLink :to=detailsURL>Details</RouterLink>
+          <RouterLink to="/studentDetails/1">Details</RouterLink>
           <RouterLink to="/createStudent">Create</RouterLink>
           <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
           <RouterLink to="/war">WARMenu</RouterLink>

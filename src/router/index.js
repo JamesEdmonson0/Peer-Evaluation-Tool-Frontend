@@ -41,12 +41,12 @@ const router = createRouter({
     {
       path: '/viewStudentPeerEvalReport',
       name: 'View Student Peer Eval Report',
-      component: () => import('@/components/PeerEval/PeerEvalReportByStudent.vue')
+      component: () => import('@/components/PeerEvaluations/StudentReportByStudent.vue')
     },
     {
       path: '/evalForm',
       name: 'Eval Form',
-      component: () => import('@/components/PeerEval/EvalForm.vue')
+      component: () => import('@/components/PeerEvaluations/EvalForm.vue')
     },
     {
       path: '/menu',
@@ -56,7 +56,7 @@ const router = createRouter({
     {
       path: '/war',
       name: 'WAR',
-      component: () => import('../views/WARView.vue'),
+      component: () => import('@/views/WARView.vue'),
       meta: { requiresAuth: true } 
     },
     {

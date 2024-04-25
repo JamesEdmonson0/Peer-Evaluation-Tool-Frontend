@@ -1,7 +1,7 @@
 <template>
   <select v-model="selectedWeek">
     <option disabled value="">Please select a week</option>
-    <option v-for="week in weeks"> {{ week }} </option>
+    <option v-for="week in weeks" :key="week">{{ week }}</option>
   </select>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   data() {
     return {
-      selectedWeek: '', // Initially no week is selected
+      selectedWeek: '',
       weeks: [
         '04/22/2024',
         '04/15/2024',

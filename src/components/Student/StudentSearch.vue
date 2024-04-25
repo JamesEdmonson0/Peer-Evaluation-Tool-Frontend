@@ -11,7 +11,10 @@
     </form>
     
     <!-- Results Section -->
-    <div v-if="students.length > 0">
+    <div v-if="students === null">
+      <h1></h1>
+    </div>
+    <div v-else-if="students.length > 0">
       <h2>Results:</h2>
       <ul>
         <hr>
@@ -24,8 +27,11 @@
           </div>
           <hr>
         </li>
-
       </ul>
+    </div>
+    <div v-else class="container">
+      <h1>No Students Found</h1>
+      <h2>Would you like to invite one</h2>
     </div>
   </div>
 </template>
@@ -44,22 +50,21 @@ export default {
         academicYear: '',
         teamName: ''
       },
-      students: [] // This will hold the search results
+      students: null, // This will hold the search results
+      isResults: undefined
     };
   },
   methods: {
     searchStudents() {
-      const baseURl = 'http://localhost:8080/students'
       const params = new URLSearchParams(this.searchParams).toString();
-      const url = `/search?${params}`;
-      axios.get(baseURl + url)
+      const URL = `http://localhost:8080/students/search?${params}`;
+      axios.get(URL)
       .then(response => {
-          console.log(response.data.data);
-          this.students = response.data.data;
-        })
-        .catch(error => {
-          console.error('There was an error!', error.response.data);
-        });
+        this.students = response.data.data;   
+      })
+      .catch(error => {
+        console.error('There was an error!', error.response.data);
+      });
 
       // Here you would typically make an API call to fetch the data based on search criteria
       console.log("Searching for:", this.searchParams);

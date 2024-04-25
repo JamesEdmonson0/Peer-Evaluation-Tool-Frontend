@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/about',
       name: 'About',
-      component: () => import('../views/AboutView.vue'),
+      component: () => import('@/views/AboutView.vue'),
       meta: { requiresAuth: true }
     },
     {
@@ -51,19 +51,24 @@ const router = createRouter({
     {
       path: '/menu',
       name: 'WAR Menu',
-      component: () => import('@/components/WAR/WARAction.vue')
+      component: () => import('@/components/WAR/WARMenu.vue'),
     },
     {
       path: '/war',
       name: 'WAR',
       component: () => import('@/views/WARView.vue'),
-      meta: { requiresAuth: true } 
+      //meta: { requiresAuth: true } 
     },
     {
       path: '/new',
       name: 'New War',
       component: () => import('@/components/WAR/WARNew.vue'),
     },
+    {
+      path: '/war/edit',
+      name: 'Edit Submission',
+      component: () => import('@/components/WAR/WAREdit.vue'),
+    }
   ]
 });
 

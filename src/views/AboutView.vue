@@ -1,9 +1,9 @@
 <script setup>
-import EvalForm from '../components/PeerEval/EvalForm.vue'
+
 </script>
 
 <template>
-  <EvalForm></EvalForm>
+
 </template>
 
 <style>

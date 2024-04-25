@@ -16,12 +16,11 @@ import LoginView from './views/LoginView.vue';
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/menu">WAR</RouterLink>
           <RouterLink to="/searchStudent">Search</RouterLink>
           <RouterLink to="/studentDetails/1">Details</RouterLink>
           <RouterLink to="/createStudent">Create</RouterLink>
           <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
-          <RouterLink to="/war">WARMenu</RouterLink>
+          <RouterLink to="/war">WAR</RouterLink>
           <RouterLink to="/evalForm">Submit Eval</RouterLink>
           <LogOutButton></LogOutButton>
         </nav>

@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  week: {
+  submissionId: {
     type: String,
     required: true,
   },
@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="container mt-4">
-    <h1>New Task for WAR of the of {{ week }}</h1>
+    <h1>Edit Task for WAR of the of {{ week }}</h1>
     <form @submit.prevent="submitForm">
       <div class="form-group">
         <label for="taskCategory">Task Category</label>
@@ -65,7 +65,6 @@ defineProps({
 <script>
 import axios from 'axios';
 export default {
-  //props: ['week'],
   data() {
     return {
       task: {

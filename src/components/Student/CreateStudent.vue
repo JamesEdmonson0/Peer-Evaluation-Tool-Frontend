@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="!submitted" class="container">
     <form @submit.prevent="submitForm">
       <h1>Create A Student Account</h1>
       <div class="form-item">
@@ -30,6 +30,11 @@
       <p v-if="passwordNotMatch">passwords are not matched</p>
     </form>
   </div>
+  <div v-else class="container">
+    <h1>Account Successfully Created</h1>
+    <h2>Welcome {{ newStudentData.studentDto.firstName }}</h2>
+    <RouterLink to="/login">Log On</RouterLink>
+  </div>
 </template>
 
 <script>
@@ -52,30 +57,30 @@ export default {
         }
       },
       password2: '',
-      passwordNotMatch: undefined
+      passwordNotMatch: undefined,
+      submitted: false,
+      returnedData: {},
     };
   },
   methods: {
-    checkPassword: function () {
-          
-
-    },
     submitForm() {
-
-      if (this.newStudentData.user.password != this.password2) {
-            this.passwordNotMatch = true;
-            return;
-            alert('after return');
-          }
+      if (confirm('Are you sure you want to submit?')) {
+        if (this.newStudentData.user.password != this.password2) {
+          this.passwordNotMatch = true;
+          return;
+        }
         this.passwordNotMatch = false;
 
-      axios.post('http://localhost:8080/students', this.newStudentData)
-        .then(response => {
-          console.log(response.data)
-        })
-        .catch(error => {
-          console.error('There was an error!', error.response.data);
-        });
+        axios.post('http://localhost:8080/students', this.newStudentData)
+          .then(response => {
+            console.log(response.data.data)
+            this.returnedData = response.data.data
+            this.submitted = true
+          })
+          .catch(error => {
+            console.error('There was an error!', error.response.data);
+          });
+      }
     },
   },
 };

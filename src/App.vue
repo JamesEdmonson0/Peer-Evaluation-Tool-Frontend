@@ -22,6 +22,8 @@ import LoginView from './views/LoginView.vue';
           <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
           <RouterLink to="/war">WAR</RouterLink>
           <RouterLink to="/evalForm">Submit Eval</RouterLink>
+          <RouterLink to="/instructorSearch">Search Instructors</RouterLink>
+          <RouterLink to="/instructorDetails/1">Instructor Details</RouterLink>
           <LogOutButton></LogOutButton>
         </nav>
       </div>

@@ -68,6 +68,17 @@ const router = createRouter({
       path: '/war/edit',
       name: 'Edit Submission',
       component: () => import('@/components/WAR/WAREdit.vue'),
+    },
+    {
+      path: '/instructorSearch',
+      name: 'InstructorSearch',
+      component: () => import('@/components/Instructor/InstructorSearch.vue')
+    },
+    {
+      path: '/instructorDetails/:id',
+      name: 'InstructorDetails',
+      component: () => import('@/components/Instructor/InstructorDetails.vue'),
+      props: true
     }
   ]
 });

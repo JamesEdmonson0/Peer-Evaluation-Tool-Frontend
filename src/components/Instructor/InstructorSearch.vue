@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <h1>Student Search</h1>
-      <form @submit.prevent="searchStudents">
+      <form @submit.prevent="searchInstructors">
         <input v-model="searchParams.firstName" type="text" placeholder="First Name" />
         <input v-model="searchParams.lastName" type="text" placeholder="Last Name" />
         <input v-model="searchParams.academicYear" type="text" placeholder="Academic Year" />
@@ -38,7 +38,7 @@
   import axios from 'axios';
   
   export default {
-    name: "StudentSearch",
+    name: "InstructorSearch",
     data() {
       return {
         searchParams: {

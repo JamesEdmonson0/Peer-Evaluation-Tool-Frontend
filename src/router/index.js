@@ -39,6 +39,11 @@ const router = createRouter({
       component: () => import('@/components/Student/CreateStudent.vue')
     },
     {
+      path: '/editStudent',
+      name: 'Edit Student',
+      component: () => import('@/components/Student/EditStudent.vue'),
+    },
+    {
       path: '/viewStudentPeerEvalReport',
       name: 'View Student Peer Eval Report',
       component: () => import('@/components/PeerEvaluations/StudentReportByStudent.vue')

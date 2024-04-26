@@ -56,9 +56,7 @@ export default {
       this.creatingNew = false
     },
     editSub(submissionId) {
-      console.log(submissionId)
       this.editId = submissionId
-      console.log(this.editId)
       this.editing = true
     },
     edited() {

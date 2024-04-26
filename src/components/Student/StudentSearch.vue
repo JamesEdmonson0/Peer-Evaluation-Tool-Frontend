@@ -67,7 +67,7 @@ export default {
       });
 
       // Here you would typically make an API call to fetch the data based on search criteria
-      console.log("Searching for:", this.searchParams);
+      //console.log("Searching for:", this.searchParams);
       // Mock data returned from an API
       
     }

@@ -99,7 +99,7 @@ export default {
         });
     },
     async fetchWeek(){
-      const URL = 'http://localhost:8080/section/week/' + JSON.parse(localStorage.getItem("student")).section
+      const URL = 'http://localhost:8080/section/week/' + JSON.parse(localStorage.getItem("userInfo")).student.section
       await axios
         .get(URL)
         .then((response) => {
@@ -131,7 +131,7 @@ export default {
     submitForm() {
       if (confirm('Are you sure you want to submit?')) {
         const peerEval = {
-          evaluator: JSON.parse(localStorage.getItem("student")),
+          evaluator: JSON.parse(localStorage.getItem("userInfo")).student,
           evaluations: this.teammates.map((teammate) => ({
             evaluated: teammate,
             scores: Object.values(this.answers[teammate.id].scores),
@@ -143,7 +143,7 @@ export default {
 
         axios.post("http://localhost:8080/peerEval",peerEval)
           .then((response) => {
-            console.log(response.data)
+            //console.log(response.data)
             if(response.data.flag) {
               this.isSubmitted = true
             }

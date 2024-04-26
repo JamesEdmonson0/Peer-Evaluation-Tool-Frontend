@@ -62,7 +62,7 @@ export default {
       })
         .then((response) => {
           this.funny = response.data.joke;
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch((error) => {
           console.error("There was an error!", error.response.data);

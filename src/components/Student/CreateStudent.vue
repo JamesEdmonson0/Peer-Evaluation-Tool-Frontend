@@ -73,7 +73,7 @@ export default {
 
         axios.post('http://localhost:8080/students', this.newStudentData)
           .then(response => {
-            console.log(response.data.data)
+            //console.log(response.data.data)
             this.returnedData = response.data.data
             this.submitted = true
           })

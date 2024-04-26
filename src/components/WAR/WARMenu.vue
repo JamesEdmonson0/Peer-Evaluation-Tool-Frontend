@@ -64,13 +64,10 @@ export default {
   },
   methods: {
     async fetchWAR() {
-      console.log(this.week)
       const url = "http://localhost:8080/war/" + this.week;
-      console.log(url);
       await axios
         .get(url)
         .then((response) => {
-          console.log(response.data.data);
           this.submissions = response.data.data;
         })
         .catch((error) => {
@@ -80,11 +77,9 @@ export default {
     deleteSubmission(submissionId) {
       alert("Submission: " + submissionId);
       const url = "http://localhost:8080/war/" + submissionId;
-      console.log(url);
       axios
         .delete(url)
         .then((response) => {
-          console.log(response.data);
           this.submissions = this.submissions.filter(
             (item) => item.id !== submissionId
           );

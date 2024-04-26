@@ -95,20 +95,20 @@ export default {
           console.error('There was an error!', error.response.data);
         });
 
-      console.log(this.task); // Here, you would typically handle the form submission, e.g., sending data to a server.
+      //console.log(this.task); // Here, you would typically handle the form submission, e.g., sending data to a server.
     },
     submitForm() {
       const URL = 'http://localhost:8080/war'
       axios.put(URL,this.task )
       .then(response => {
-          console.log(response.data)
+          //console.log(response.data)
           this.$emit('edited');
         })
         .catch(error => {
           console.error('There was an error!', error.response.data);
         });
 
-      console.log(this.task); // Here, you would typically handle the form submission, e.g., sending data to a server.
+      //console.log(this.task); // Here, you would typically handle the form submission, e.g., sending data to a server.
     }
   },
 };

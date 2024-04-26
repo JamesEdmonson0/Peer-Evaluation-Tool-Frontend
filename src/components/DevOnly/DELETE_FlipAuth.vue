@@ -8,18 +8,15 @@ defineProps({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 
 <template>
-  
-  
-  <button @click="flip">Flip Auth</button>
-  <div>
-    <span v-if="$store.state.isAuthenticated">Logged In</span>
-    <span v-if="!$store.state.isAuthenticated">Logged Out</span>
-  </div>
-  
+  <button @click="flip">{{type}}</button>
 </template>
 
 <script>
@@ -30,7 +27,8 @@ export default {
     flip() {
       if (this.$store.state.isAuthenticated) {
         localStorage.removeItem("authToken");
-        localStorage.removeItem("student");
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem('role');
         delete axios.defaults.headers.common["Authorization"];
         this.$store.commit("setAuthentication", false);
       } else {
@@ -43,8 +41,8 @@ export default {
           .then((response) => {
             const token = response.data.data.token; // Assuming the token is returned in response data
             localStorage.setItem("authToken", token); // Storing token in local storage
-            const student = response.data.data.userInfo.student;
-            localStorage.setItem('student', JSON.stringify(student));
+            const userInfo = response.data.data.userInfo;
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
             const role = response.data.data.userInfo.roles;
             localStorage.setItem('role', role);
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`; // Setting default header

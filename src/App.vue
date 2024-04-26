@@ -7,7 +7,10 @@ import LoginView from './views/LoginView.vue';
 </script>
 
 <template>
-  <FlipAuth user="Asuri" pass="summer2024"></FlipAuth>
+  <div class="newclass">
+  <FlipAuth user="Asuri" pass="summer2024" type="student">Student</FlipAuth>
+  <FlipAuth user="Lma" pass="bagel" type="instructor"></FlipAuth>
+  </div>
   <div v-if="$store.state.isAuthenticated" class="container">
     <header>
       <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
@@ -18,6 +21,7 @@ import LoginView from './views/LoginView.vue';
           <RouterLink to="/about">About</RouterLink>
           <RouterLink to="/searchStudent">Search</RouterLink>
           <RouterLink to="/studentDetails/1">Details</RouterLink>
+          <RouterLink to="/editStudent">Edit Student</RouterLink>
           <RouterLink to="/createStudent">Create</RouterLink>
           <RouterLink to="/viewStudentPeerEvalReport">Eval Report</RouterLink>
           <RouterLink to="/war">WAR</RouterLink>
@@ -40,6 +44,10 @@ import LoginView from './views/LoginView.vue';
 </template>
 
 <style scoped>
+.newclass {
+  display: flex;
+}
+
 .container {
   display: flex;
   align-items: center; /* Center horizontally */

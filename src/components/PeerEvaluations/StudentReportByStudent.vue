@@ -62,7 +62,7 @@ export default {
       axios
         .get(URL)
         .then((response) => {
-          console.log(response.data.data)
+          //console.log(response.data.data)
           this.evalBool = response.data.data.evals.length !== 0
           if(this.evalBool) {
             

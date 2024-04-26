@@ -13,7 +13,7 @@ defineProps({
     <form @submit.prevent="submitForm">
       <div class="form-group">
         <label for="taskCategory">Task Category</label>
-        <select class="form-control" id="taskCategory" v-model="task.taskCategory">
+        <select class="form-control" id="taskCategory" v-model="task.taskCategory" required>
           <option disabled value="">Please select one</option>
           <option>Research</option>
           <option>Documentation</option>
@@ -28,27 +28,27 @@ defineProps({
 
       <div class="form-group">
         <label for="plannedTask">Planned Task</label>
-        <input type="text" class="form-control" id="plannedTask" v-model="task.plannedTask">
+        <input type="text" class="form-control" id="plannedTask" v-model="task.plannedTask" required>
       </div>
 
       <div class="form-group">
         <label for="description">Task Description</label>
-        <input type="text" class="form-control" id="description" v-model="task.description">
+        <input type="text" class="form-control" id="description" v-model="task.description" required>
       </div>
 
       <div class="form-group">
         <label for="plannedHours">Planned Hours</label>
-        <input type="text" class="form-control" id="plannedHours" v-model="task.plannedHours">
+        <input type="text" class="form-control" id="plannedHours" v-model="task.plannedHours" required>
       </div>
 
       <div class="form-group">
         <label for="actualHours">Actual Hours</label>
-        <input type="text" class="form-control" id="actualHours" v-model="task.actualHours">
+        <input type="text" class="form-control" id="actualHours" v-model="task.actualHours" required>
       </div>
 
       <div class="form-group">
         <label for="status">Status</label>
-        <select class="form-control" id="status" v-model="task.status">
+        <select class="form-control" id="status" v-model="task.status" required>
           <option>In progress</option>
           <option>Under testing</option>
           <option>Done</option>

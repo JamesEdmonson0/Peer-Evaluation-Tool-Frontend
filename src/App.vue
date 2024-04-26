@@ -7,7 +7,7 @@ import LoginView from './views/LoginView.vue';
 </script>
 
 <template>
-  <FlipAuth></FlipAuth>
+  <FlipAuth user="Asuri" pass="summer2024"></FlipAuth>
   <div v-if="$store.state.isAuthenticated" class="container">
     <header>
       <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />

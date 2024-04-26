@@ -16,6 +16,7 @@ import LogOutButton from '@/components/Users/LogOutButton.vue';
         <RouterLink to="/war">Manage WAR Tasks</RouterLink>
         <RouterLink to="/evalForm">Submit Peer Eval</RouterLink>
         <RouterLink to="/viewStudentPeerEvalReport">View Eval Report</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
         <LogOutButton></LogOutButton>
       </nav>
     </div>

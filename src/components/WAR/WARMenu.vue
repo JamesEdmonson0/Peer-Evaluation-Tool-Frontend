@@ -94,7 +94,7 @@ export default {
         });
     },
     editSubmission(submissionId){
-      this.$emit('edit', submissionId);
+      this.$emit('edit', submissionId.toString());
     }
   },
   watch: {

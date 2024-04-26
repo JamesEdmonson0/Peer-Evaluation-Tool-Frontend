@@ -16,7 +16,7 @@ import WAREdit from '@/components/WAR/WAREdit.vue'
         <WARNew :week="selectedWeek" @submitted="createdNew"></WARNew>
       </div>
       <div v-else-if="editing">
-        <WAREdit :submissionId="editId"></WAREdit>
+        <WAREdit :submissionId="editId" @edited="edited"></WAREdit>
       </div>
       <div v-else class="container">
         <button @click="creatingNew = !creatingNew">New</button>
@@ -33,7 +33,10 @@ import WAREdit from '@/components/WAR/WAREdit.vue'
 export default {
   components: {
     WeekSelector,
-    DisplayWeek
+    DisplayWeek,
+    WARMenu,
+    WAREdit,
+    WARNew
   },
   data() {
     return {
@@ -55,7 +58,11 @@ export default {
     editSub(submissionId) {
       console.log(submissionId)
       this.editId = submissionId
+      console.log(this.editId)
       this.editing = true
+    },
+    edited() {
+      this.editing = false
     }
   }
 };

@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="container mt-4">
-    <h1>Edit Task for WAR of the of {{ week }}</h1>
+    <h1>Editing WAR Task</h1>
     <form @submit.prevent="submitForm">
       <div class="form-group">
         <label for="taskCategory">Task Category</label>
@@ -77,13 +77,32 @@ export default {
       }
     };
   },
+  async mounted() {
+    try {
+      await Promise.all([this.fetchDetails()]);
+    } catch (error) {
+      console.error("Error in mounted hook:", error);
+    }
+  },
   methods: {
+    async fetchDetails() {
+      const URL = 'http://localhost:8080/war/id/' + this.submissionId;
+      await axios.get(URL)
+      .then(response => {
+          this.task = response.data.data
+        })
+        .catch(error => {
+          console.error('There was an error!', error.response.data);
+        });
+
+      console.log(this.task); // Here, you would typically handle the form submission, e.g., sending data to a server.
+    },
     submitForm() {
-      const URL = 'http://localhost:8080/war/' + this.week;
-      axios.post(URL,this.task )
+      const URL = 'http://localhost:8080/war'
+      axios.put(URL,this.task )
       .then(response => {
           console.log(response.data)
-          this.$emit('submitted');
+          this.$emit('edited');
         })
         .catch(error => {
           console.error('There was an error!', error.response.data);
@@ -91,7 +110,7 @@ export default {
 
       console.log(this.task); // Here, you would typically handle the form submission, e.g., sending data to a server.
     }
-  }
+  },
 };
 </script>
 

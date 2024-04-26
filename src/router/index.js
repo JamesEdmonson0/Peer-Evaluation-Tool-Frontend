@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Login from '../components/Users/LoginForm.vue';
+import Student from '@/views/StudentView.vue'
 import store from '../store'
 
 const router = createRouter({
@@ -21,6 +22,11 @@ const router = createRouter({
       name: 'About',
       component: () => import('@/views/AboutView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/student',
+      name: 'Student Homepage',
+      component: Student,
     },
     {
       path: '/searchStudent',

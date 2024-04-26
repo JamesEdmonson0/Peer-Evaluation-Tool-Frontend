@@ -13,6 +13,9 @@ export default {
       localStorage.removeItem("role")
       delete axios.defaults.headers.common["Authorization"]; // Clear the auth header
       this.$store.commit("setAuthentication", false);
+      this.$store.commit('setIsStudent', false);
+      this.$store.commit('setIsInstructor', false);
+      this.$store.commit('setIsAdmin', false);
       this.$router.push("/login"); // Redirect the user to the login page
     },
   },

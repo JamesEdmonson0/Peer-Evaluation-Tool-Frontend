@@ -35,8 +35,16 @@ export default {
           const userInfo = response.data.data.userInfo;
           localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
+
           const role = response.data.data.userInfo.roles;
-          localStorage.setItem('role', role);
+          if(role === 'student') {
+            this.$store.commit('setIsStudent', true);
+          } else if(role === 'instructor') {
+            this.$store.commit('setIsInstructor', true);
+          } else if(role === 'admin') {
+            this.$store.commit('setIsAdmin', true);
+          }
+          
 
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Setting default header
           this.$store.commit('setAuthentication', true);

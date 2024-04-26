@@ -1,40 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import FlipAuth from     './components/DevOnly/DELETE_FlipAuth.vue'
-import LoginView from './views/LoginView.vue';
-import StudentView from './views/StudentView.vue';
-import InstructorView from './views/InstructorView.vue';
-import AdminView from './views/AdminView.vue';
-
+import HelloWorld from '@/components/HelloWorld.vue';
+import LogOutButton from '@/components/Users/LogOutButton.vue';
 </script>
 
 <template>
-  <FlipAuth user="Asuri" pass="summer2024" type="student">Student</FlipAuth>
-  <FlipAuth user="Lma" pass="bagel" type="instructor"></FlipAuth>
-  <FlipAuth user="admin" pass="password" type="admin"></FlipAuth>
-
-
-  <div v-if="$store.state.isAuthenticated" class="container">
-    <div v-if="$store.state.isStudent">
-      <StudentView></StudentView>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
+    <div class="wrapper">
+      <HelloWorld msg="You did it, Aliya! Admin Logged In" />
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/searchStudent">Search for Students</RouterLink>
+        <LogOutButton></LogOutButton>
+      </nav>
     </div>
-    <div v-else-if="$store.state.isInstructor">
-      <InstructorView></InstructorView>
-    </div>
-    <div v-else-if="$store.state.isAdmin">
-      <AdminView></AdminView>
-    </div>
-  </div>
-  <div v-else>
-    <header>
-      <img alt="Vue logo" class="logo" src="@/assets/unnamed.png" width="125" height="125" />
-      <div class="wrapper">
-        <HelloWorld msg="You did it, Aliya! Logged Out" />
-      </div>
-    </header>
-    <LoginView></LoginView>
-  </div>
+  </header>
+  <RouterView></RouterView>
 </template>
 
 <style scoped>

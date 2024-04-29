@@ -79,7 +79,13 @@ const router = createRouter({
       path: '/war/edit',
       name: 'Edit Submission',
       component: () => import('@/components/WAR/WAREdit.vue'),
-    }
+    },
+
+    {
+      path: '/createSection',
+      name: 'Create Section',
+      component: () => import('@/components/Section/CreateSection.vue')
+    },
   ]
 });
 

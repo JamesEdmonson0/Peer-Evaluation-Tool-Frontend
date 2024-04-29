@@ -12,6 +12,10 @@ import LogOutButton from '@/components/Users/LogOutButton.vue';
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/searchStudent">Search for Students</RouterLink>
+        <RouterLink to="/createSection">Create Section </RouterLink>
+        <RouterLink to="/editSection">Edit Section </RouterLink>
+        <RouterLink to="/findSection">Find Section</RouterLink>
+
         <RouterLink to="/about">About</RouterLink>
         <LogOutButton></LogOutButton>
       </nav>

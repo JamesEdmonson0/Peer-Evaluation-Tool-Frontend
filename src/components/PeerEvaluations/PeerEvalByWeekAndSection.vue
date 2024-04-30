@@ -14,21 +14,24 @@
       </thead>
       <tbody>
         <tr v-for="student in formattedEvaluations" :key="student.id">
-          <td>{{ student.name }}</td>
-          <td>{{ student.averageGrade.toFixed(2) }}</td>
-          <td>
-            <ul>
-              <li v-for="evaluator in student.evaluators" :key="evaluator.name">{{ evaluator.name }}</li>
-            </ul>
-          </td>
-          <td>{{ student.publicComments.join(', ') }}</td>
-          <td>{{ student.privateComments.join(', ') }}</td>
+          <td rowspan="student.evaluators.length + 1">{{ student.name }}</td>
+          <td rowspan="student.evaluators.length + 1">{{ student.averageGrade.toFixed(2) }}</td>
+          <template v-for="evaluator in student.evaluators" :key="evaluator.name">
+            <tr>
+              <td>{{ evaluator.name }}</td>
+              <td>{{ evaluator.publicComments }}</td>
+              <td>{{ evaluator.privateComments }}</td>
+            </tr>
+          </template>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
 
+
+
+  
 <script>
 import axios from 'axios';
 import WeekSelector from '../Utils/WeekSelector.vue'; // Adjust the path as necessary
@@ -69,16 +72,16 @@ export default {
             totalScore: 0,
             count: 0,
             evaluators: [],
-            publicComments: [],
-            privateComments: [],
           });
         }
         const studentInfo = studentMap.get(studentId);
         studentInfo.totalScore += evaluation.totalScore;
         studentInfo.count++;
-        studentInfo.evaluators.push({ name: evaluation.evaluator });
-        studentInfo.publicComments.push(evaluation.publicComments);
-        studentInfo.privateComments.push(evaluation.privateComments);
+        studentInfo.evaluators.push({
+          name: evaluation.evaluator,
+          publicComments: evaluation.publicComments,
+          privateComments: evaluation.privateComments
+        });
       });
 
       this.formattedEvaluations = Array.from(studentMap.values()).map(
@@ -99,14 +102,25 @@ export default {
 };
 </script>
 
+  
 <style scoped>
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Helps in maintaining uniform column width */
 }
+
 th, td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;
+}
+
+th {
+  background-color: #f0f0f0; /* Light grey background for headers */
+}
+
+td {
+  vertical-align: top; /* Aligns content to the top of the cell */
 }
 </style>

@@ -11,6 +11,7 @@ import LogOutButton from '@/components/Users/LogOutButton.vue';
       <HelloWorld msg="You did it, Aliya! Instructor Logged In" />
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/viewPeerEvalByWeekAndSection">Peer Eval by Week and Section</RouterLink>
         <RouterLink to="/createInstructor">Create Instructor Account</RouterLink>
         <RouterLink to="/searchStudent">Search for Students</RouterLink>
         <RouterLink to="/about">About</RouterLink>

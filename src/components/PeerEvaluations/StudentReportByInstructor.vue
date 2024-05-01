@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Senior Design Section Peer Evaluations</h1>
+    <h1>Peer Evaluations</h1>
     <week-selector @week-changed="handleWeekChange" />
     <table>
       <thead>
         <tr>
-          <th>Student</th>
+          <th>Week</th>
           <th>Grade</th>
           <th>Commented By</th>
           <th>Public Comments</th>
@@ -14,15 +14,29 @@
       </thead>
       <tbody>
         <tr v-for="student in formattedEvaluations" :key="student.id">
-          <td>{{ student.name }}</td>
+          <td>{{ this.selectedWeek }}</td>
           <td>{{ student.averageGrade.toFixed(2) }}</td>
           <td>
-            <ul>
-              <li v-for="evaluator in student.evaluators" :key="evaluator.name">{{ evaluator.name }}</li>
-            </ul>
+            <table>
+              <tr v-for="evaluator in student.evaluators" :key="`name-${evaluator.name}`">
+                <td>{{ evaluator.name }}</td>
+              </tr>
+            </table>
           </td>
-          <td>{{ student.publicComments.join(', ') }}</td>
-          <td>{{ student.privateComments.join(', ') }}</td>
+          <td>
+            <table>
+              <tr v-for="evaluator in student.evaluators" :key="`public-${evaluator.name}`">
+                <td>{{ evaluator.publicComments }}</td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table>
+              <tr v-for="evaluator in student.evaluators" :key="`private-${evaluator.name}`">
+                <td>{{ evaluator.privateComments }}</td>
+              </tr>
+            </table>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -34,6 +48,7 @@ import axios from 'axios';
 import WeekSelector from '../Utils/WeekSelector.vue'; // Adjust the path as necessary
 
 export default {
+  props: ['id'],
   components: {
     WeekSelector,
   },
@@ -45,16 +60,22 @@ export default {
     };
   },
   methods: {
+    handleWeekChange(week) {
+      this.selectedWeek = week;
+      this.fetchEvaluations(); // Refetch evaluations with the new week
+    },
     fetchEvaluations() {
-      const url = `http://localhost:8080/peerEval/evaluations/${this.selectedWeek}/Section2023-2024`;
+      const url = `http://localhost:8080/peerEval/peerEvalReportForStudent/${this.id}/${this.selectedWeek}`;
       axios
         .get(url)
         .then((response) => {
-          this.evaluations = response.data.data;
+          console.log('API Response:', response);
+          this.evaluations = response.data.data.evals;
           this.processData();
         })
         .catch((error) => {
           console.error("Error fetching evaluations:", error);
+          console.log('Error Response:', error.response);
         });
     },
     processData() {
@@ -69,28 +90,22 @@ export default {
             totalScore: 0,
             count: 0,
             evaluators: [],
-            publicComments: [],
-            privateComments: [],
           });
         }
         const studentInfo = studentMap.get(studentId);
         studentInfo.totalScore += evaluation.totalScore;
         studentInfo.count++;
-        studentInfo.evaluators.push({ name: evaluation.evaluator });
-        studentInfo.publicComments.push(evaluation.publicComments);
-        studentInfo.privateComments.push(evaluation.privateComments);
+        studentInfo.evaluators.push({
+          name: evaluation.evaluator,
+          publicComments: evaluation.publicComments,
+          privateComments: evaluation.privateComments
+        });
       });
 
-      this.formattedEvaluations = Array.from(studentMap.values()).map(
-        (student) => ({
-          ...student,
-          averageGrade: student.totalScore / student.count,
-        })
-      );
-    },
-    handleWeekChange(week) {
-      this.selectedWeek = week;
-      this.fetchEvaluations();
+      this.formattedEvaluations = Array.from(studentMap.values()).map(student => ({
+        ...student,
+        averageGrade: student.totalScore / student.count
+      }));
     },
   },
   mounted() {
@@ -104,7 +119,9 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
+
+th,
+td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;

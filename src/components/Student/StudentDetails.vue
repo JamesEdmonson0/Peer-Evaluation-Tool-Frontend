@@ -5,7 +5,8 @@
 
     <h3>Team Name: {{ details.teamName }} - Academic Year: {{ details.academicYear }}</h3>
     <hr>
-
+    <button @click="goToStudentReport">Generate Peer Evaluation Report</button>
+    <hr>
     <div>
       <h2>Peer Evaluations</h2>
       
@@ -49,6 +50,9 @@ export default {
           console.error('There was an error!', error.response.data);
         });
     },
+    goToStudentReport() {
+      this.$router.push(`/studentReportByInstructor/${this.id}`);
+    }
   }
 }
 </script>
@@ -56,5 +60,19 @@ export default {
 <style scoped>
 input {
   margin: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 </style>

@@ -60,6 +60,11 @@ const router = createRouter({
       component: () => import('@/components/PeerEvaluations/StudentReportByStudent.vue')
     },
     {
+      path: '/viewPeerEvalByWeekAndSection',
+      name: 'View Peer Eval Report By Week And Section',
+      component: () => import('@/components/PeerEvaluations/PeerEvalByWeekAndSection.vue')
+    },
+    {
       path: '/evalForm',
       name: 'Eval Form',
       component: () => import('@/components/PeerEvaluations/EvalForm.vue')

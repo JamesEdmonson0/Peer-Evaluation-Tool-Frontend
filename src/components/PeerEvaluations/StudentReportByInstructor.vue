@@ -60,16 +60,22 @@ export default {
     };
   },
   methods: {
+    handleWeekChange(week) {
+      this.selectedWeek = week;
+      this.fetchEvaluations(); // Refetch evaluations with the new week
+    },
     fetchEvaluations() {
       const url = `http://localhost:8080/peerEval/peerEvalReportForStudent/${this.id}/${this.selectedWeek}`;
       axios
         .get(url)
         .then((response) => {
-          this.evaluations = response.data.data;
+          console.log('API Response:', response);
+          this.evaluations = response.data.data.evals;
           this.processData();
         })
         .catch((error) => {
           console.error("Error fetching evaluations:", error);
+          console.log('Error Response:', error.response);
         });
     },
     processData() {

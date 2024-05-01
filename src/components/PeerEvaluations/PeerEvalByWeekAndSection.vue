@@ -14,20 +14,35 @@
       </thead>
       <tbody>
         <tr v-for="student in formattedEvaluations" :key="student.id">
-          <td rowspan="student.evaluators.length + 1">{{ student.name }}</td>
-          <td rowspan="student.evaluators.length + 1">{{ student.averageGrade.toFixed(2) }}</td>
-          <template v-for="evaluator in student.evaluators" :key="evaluator.name">
-            <tr>
-              <td>{{ evaluator.name }}</td>
-              <td>{{ evaluator.publicComments }}</td>
-              <td>{{ evaluator.privateComments }}</td>
-            </tr>
-          </template>
+          <td>{{ student.name }}</td>
+          <td>{{ student.averageGrade.toFixed(2) }}</td>
+          <td>
+            <table>
+              <tr v-for="evaluator in student.evaluators" :key="`name-${evaluator.name}`">
+                <td>{{ evaluator.name }}</td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table>
+              <tr v-for="evaluator in student.evaluators" :key="`public-${evaluator.name}`">
+                <td>{{ evaluator.publicComments }}</td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table>
+              <tr v-for="evaluator in student.evaluators" :key="`private-${evaluator.name}`">
+                <td>{{ evaluator.privateComments }}</td>
+              </tr>
+            </table>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
+
 
 
 

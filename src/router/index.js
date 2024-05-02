@@ -110,6 +110,12 @@ const router = createRouter({
       component: () => import("@/components/WAR/WAREdit.vue"),
     },
     {
+      path: "/warByTeamAndWeek/:teamName",
+      name: "WAR By Team And Week",
+      component: () => import("@/components/WAR/WARByTeamAndWeek.vue"),
+      props: true
+    },
+    {
       path: "/searchTeam",
       name: "Search Teams",
       component: () => import("@/components/Team/TeamSearch.vue"),

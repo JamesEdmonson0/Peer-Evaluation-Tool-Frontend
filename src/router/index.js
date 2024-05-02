@@ -109,6 +109,17 @@ const router = createRouter({
       name: "Edit Submission",
       component: () => import("@/components/WAR/WAREdit.vue"),
     },
+    {
+      path: "/searchTeam",
+      name: "Search Teams",
+      component: () => import("@/components/Team/TeamSearch.vue"),
+    },
+    {
+      path: "/teamDetails/:id",
+      name: "Team Details",
+      component: () => import("@/components/Team/TeamDetails.vue"),
+      props: true,
+    },
   ],
 });
 

@@ -126,6 +126,13 @@ const router = createRouter({
       component: () => import("@/components/Team/TeamDetails.vue"),
       props: true,
     },
+
+    {
+      path: "/editSection",
+      name: "Edit Section",
+      component: () => import("@/components/Section/EditSection.vue"),
+
+    },
   ],
 });
 

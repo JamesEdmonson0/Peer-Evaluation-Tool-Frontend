@@ -126,6 +126,21 @@ const router = createRouter({
       component: () => import("@/components/Team/TeamDetails.vue"),
       props: true,
     },
+
+    {
+
+      path: "/findSection",
+      name: "Find Section",
+      component: () => import("@/components/Section/FindSection.vue")
+    },
+
+    {
+      path: "/viewSection/:id",
+      name: "View Section",
+      component: () => import("@/components/Section/ViewSection.vue")
+
+
+    }
   ],
 });
 

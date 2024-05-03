@@ -1,84 +1,88 @@
 <template>
+
+  <div v-if="rubriChoosen" class="container">
+
+
+  </div>
+
+
+
+
+
+
   <div v-if="!submitted" class="container">
-    <form @submit.prevent="submitForm">
-      <h1>Create A Student Account</h1>
+    <form @submit.prevent="submitSection">
+      <h1>Create Senior Design Section</h1>
       <div class="form-item">
-        <label for="username">Username:</label>
-        <input id="username" type="text" v-model="newStudentData.user.username" required/>
+        <label for="sectionName">Section Name:</label>
+        <input id="sectionName" type="text" v-model="newSectionData.sectionName" required/>
       </div>
       <div class="form-item">
-        <label for="password">Password:</label>
-        <input id="password" type="password" v-model="newStudentData.user.password" required/>
+        <label for="academicYear">Academic Year:</label>
+        <input id="academicYear" type="text" v-model="newSectionData.academicYear" required/>
       </div>
       <div class="form-item">
-        <label for="password2">Retype Password:</label>
-        <input id="password2" type="password" v-model="password2" required/>
+        <label for="firstDate">First Day:</label>
+        <input id="firstDate" type="text" v-model="newSectionData.firstName" required/>
       </div>
       <div class="form-item">
-        <label for="firstName">First name:</label>
-        <input id="firstName" type="text" v-model="newStudentData.studentDto.firstName" required/>
+        <label for="lastDate">Last Day:</label>
+        <input id="lastDate" type="text" v-model="newSectionData.lastName" required/>
       </div>
       <div class="form-item">
-        <label for="middleInitial">Middle Initial:</label>
-        <input id="middleInitial" type="text" v-model="newStudentData.studentDto.middleInitial" />
-      </div>
-      <div class="form-item">
-        <label for="lastName">Last name:</label>
-        <input id="lastName" type="text" v-model="newStudentData.studentDto.lastName" required/>
+        <label for="rubric">Select Rubric:</label>
+        <select id="rubric" v-model="selectedRubric" required>
+          <option v-for="rubric in rubricList" :key="rubric.id" :value="rubric">{{ rubric.rubricName }}</option>
+        </select>
       </div>
       <button type="submit">Submit</button>
-      <p v-if="passwordNotMatch">passwords are not matched</p>
     </form>
   </div>
-  <div v-else class="container">
-    <h1>Account Successfully Created</h1>
-    <h2>Welcome {{ newStudentData.studentDto.firstName }}</h2>
-    <RouterLink to="/login">Log On</RouterLink>
-  </div>
+
 </template>
 
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
-      newStudentData: {
-        user: {
-          username: '',
-          password: '',
-          enabled: true,
-          roles: 'student'
-        },
-        studentDto: {
-          firstName: '',
-          middleInitial: '',
-          lastName: '',
-        }
+      newSectionData: {
+        sectionName: '',
+        academicYear: '',
+        firstName: '',
+        lastName: '',
+        rubricDto: null, // Updated to store rubric ID
       },
-      password2: '',
-      passwordNotMatch: undefined,
       submitted: false,
-      returnedData: {},
+      rubricList: [], // Array to store fetched rubric list
+      selectedRubric: null, // Store selected rubric ID
     };
   },
+  mounted() {
+    this.fetchRubrics(); // Fetch rubric list when component is mounted
+  },
   methods: {
-    submitForm() {
-      if (confirm('Are you sure you want to submit?')) {
-        if (this.newStudentData.user.password != this.password2) {
-          this.passwordNotMatch = true;
-          return;
-        }
-        this.passwordNotMatch = false;
+    fetchRubrics() {
+      axios.get('http://localhost:8080/rubric/allRubrics')
+          .then(response => {
 
-        axios.post('http://localhost:8080/students', this.newStudentData)
+            this.rubricList = response.data.data; // Assuming response.data is an array of rubrics
+            console.log('Rubric list:', this.rubricList); // Add this line to check the fetched rubric list
+          })
+          .catch(error => {
+            console.error('Error fetching rubrics:', error);
+          });
+    },
+    submitSection() {
+      if (confirm('Are you sure you want to submit?')) {
+        this.newSectionData.rubricDto = this.selectedRubric; // Assign selected rubric object
+        axios.post('http://localhost:8080/section', this.newSectionData)
             .then(response => {
-              //console.log(response.data.data)
-              this.returnedData = response.data.data
-              this.submitted = true
+              this.submitted = true;
+              console.log('Section created:', response.data);
             })
             .catch(error => {
-              console.error('There was an error!', error.response.data);
+              console.error('Error creating section:', error.response.data);
             });
       }
     },
@@ -87,7 +91,7 @@ export default {
 </script>
 
 <style scoped>
-input {
+input, select {
   margin: 10px;
 }
 

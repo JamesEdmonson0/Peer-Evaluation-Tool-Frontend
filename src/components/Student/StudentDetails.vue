@@ -11,8 +11,7 @@ import StudentWARReport from '../WAR/StudentWARReport.vue';
     <DeleteStudentButton :id="id"></DeleteStudentButton>
     <hr>
     <button @click="goToStudentReport">Generate Peer Evaluation Report</button>
-    <button @click="generateWARReport">Generate WAR Report</button>
-    <button @click="navigateToWARReport">View WAR Report</button>
+    <button @click="generateWARReport">WAR Report for Team</button>
     <hr>
     <StudentWARReport :teamName="details.teamName" :studentName="`${details.firstName} ${details.lastName}`" />
     <div>

@@ -29,6 +29,11 @@ const router = createRouter({
       component: Student,
     },
     {
+      path: "/createRubric",
+      name: "Create Rubric",
+      component: () => import("@/components/Rubric/CreateRubric.vue"),
+    },
+    {
       path: "/searchStudent",
       name: "Search Students",
       component: () => import("@/components/Student/StudentSearch.vue"),

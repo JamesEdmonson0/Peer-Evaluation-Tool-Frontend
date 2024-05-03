@@ -43,7 +43,8 @@ export default {
         sectionName: '',
         academicYear: '',
       },
-      sections: null
+      sections: null,
+      isResult: undefined
     };
   },
   methods: {

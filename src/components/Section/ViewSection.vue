@@ -1,9 +1,25 @@
 <template>
-
-  <div>
-    <h1>{{section.sectionName}}</h1>
-    <h3>{{section.academicYear}}</h3>
-   <!-- <h3>{{details.firstDay}}</h3> -->
+  <div class="section-details">
+    <div class="field">
+      <label>Section Name:</label>
+      <span>{{ section.sectionName }}</span>
+    </div>
+    <div class="field">
+      <label>Academic Year:</label>
+      <span>{{ section.academicYear }}</span>
+    </div>
+    <div class="field">
+      <label>Last Day:</label>
+      <span>{{ section.lastDay }}</span>
+    </div>
+    <div class="field">
+      <label>First Day:</label>
+      <span>{{ section.firstDay }}</span>
+    </div>
+    <div class="field">
+      <label>Rubric Name:</label>
+      <span>{{ section.rubricDto.rubricName }}</span>
+    </div>
   </div>
 </template>
 
@@ -11,7 +27,6 @@
 </script>
 
 <script>
-
 import axios from "axios";
 
 export default {
@@ -21,32 +36,43 @@ export default {
     return {
       section: {},
     }
-    },
-  created() {
-    this.getDetails()
   },
-
+  created() {
+    this.getDetails();
+  },
   methods: {
-    getDetails () {
-      const URL = 'http://localhost:8080/section/' + this.id
+    getDetails() {
+      const URL = 'http://localhost:8080/section/' + this.id;
       axios.get(URL)
           .then(response => {
-            this.section = response.data.data
+            this.section = response.data.data;
           })
           .catch(error => {
-            console.error('There was an error!', error.response.data)
+            console.error('There was an error!', error.response.data);
           });
     }
   }
-
 }
-
 </script>
 
 <style scoped>
-
-input{
-  margin: 10px;
+.section-details {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
+.field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  font-weight: bold;
+}
+
+.field span {
+  margin-left: 10px;
+}
 </style>

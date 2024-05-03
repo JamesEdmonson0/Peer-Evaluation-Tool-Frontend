@@ -149,7 +149,8 @@ const router = createRouter({
     {
       path: "/viewSection/:id",
       name: "View Section",
-      component: () => import("@/components/Section/ViewSection.vue")
+      component: () => import("@/components/Section/ViewSection.vue"),
+      props: true,
 
 
     }

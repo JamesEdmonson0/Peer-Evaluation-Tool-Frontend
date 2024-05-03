@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <button role="button-74" @click="test">Activate</button>
+  <button class="button-74" role="button" @click="test">Activate</button>
 </template>
 
 <script>

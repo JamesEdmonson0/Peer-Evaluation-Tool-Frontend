@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-      <h1>Student Search</h1>
-      <form @submit.prevent="searchStudents">
+      <h1>Instructor Search</h1>
+      <form @submit.prevent="searchInstructors">
         <input v-model="searchParams.firstName" type="text" placeholder="First Name" />
         <input v-model="searchParams.lastName" type="text" placeholder="Last Name" />
         <input v-model="searchParams.academicYear" type="text" placeholder="Academic Year" />
@@ -20,8 +20,7 @@
           <li v-for="instructor in instructors" :key="instructor.id">
             <div>
               <RouterLink :to="`/instructorDetails/${instructor.id}`"><h2>{{ instructor.firstName }} {{ instructor.lastName }}</h2></RouterLink> 
-              Academic Year: {{ instructor.academicYear }}
-              Team Name: {{ instructor.teamName }}
+              Supervised Teams: {{ instructor.teamName }}
             </div>
             <hr>
           </li>
@@ -38,7 +37,7 @@
   import axios from 'axios';
   
   export default {
-    name: "StudentSearch",
+    name: "InstructorSearch",
     data() {
       return {
         searchParams: {

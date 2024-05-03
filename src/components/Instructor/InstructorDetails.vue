@@ -2,9 +2,7 @@
     <div>
       
       <h1>{{ details.firstName}} {{ details.lastName }}</h1>
-  
-      <h3>Academic Year: {{ details.academicYear }}</h3>
-      <h3>Team Name: {{ details.teamName }}</h3>
+      <h3>Supervised Teams: {{ details.teamName }}</h3>
 
     </div>
   </template>

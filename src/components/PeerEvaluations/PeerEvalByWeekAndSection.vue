@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Peer Evaluations</h1>
+    <h1>Senior Design Section Peer Evaluations</h1>
     <week-selector @week-changed="handleWeekChange" />
     <table>
       <thead>
         <tr>
-          <th>Week</th>
+          <th>Student</th>
           <th>Grade</th>
           <th>Commented By</th>
           <th>Public Comments</th>
@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <tr v-for="student in formattedEvaluations" :key="student.id">
-          <td>{{ this.selectedWeek }}</td>
+          <td>{{ student.name }}</td>
           <td>{{ student.averageGrade.toFixed(2) }}</td>
           <td>
             <table>
@@ -43,12 +43,15 @@
   </div>
 </template>
 
+
+
+
+  
 <script>
 import axios from 'axios';
 import WeekSelector from '../Utils/WeekSelector.vue'; // Adjust the path as necessary
 
 export default {
-  props: ['id'],
   components: {
     WeekSelector,
   },
@@ -60,22 +63,16 @@ export default {
     };
   },
   methods: {
-    handleWeekChange(week) {
-      this.selectedWeek = week;
-      this.fetchEvaluations(); // Refetch evaluations with the new week
-    },
     fetchEvaluations() {
-      const url = `http://localhost:8080/peerEval/peerEvalReportForStudent/${this.id}/${this.selectedWeek}`;
+      const url = `http://localhost:8080/peerEval/evaluations/${this.selectedWeek}/Section2023-2024`;
       axios
         .get(url)
         .then((response) => {
-          console.log('API Response:', response);
-          this.evaluations = response.data.data.evals;
+          this.evaluations = response.data.data;
           this.processData();
         })
         .catch((error) => {
           console.error("Error fetching evaluations:", error);
-          console.log('Error Response:', error.response);
         });
     },
     processData() {
@@ -102,10 +99,16 @@ export default {
         });
       });
 
-      this.formattedEvaluations = Array.from(studentMap.values()).map(student => ({
-        ...student,
-        averageGrade: student.totalScore / student.count
-      }));
+      this.formattedEvaluations = Array.from(studentMap.values()).map(
+        (student) => ({
+          ...student,
+          averageGrade: student.totalScore / student.count,
+        })
+      );
+    },
+    handleWeekChange(week) {
+      this.selectedWeek = week;
+      this.fetchEvaluations();
     },
   },
   mounted() {
@@ -114,16 +117,25 @@ export default {
 };
 </script>
 
+  
 <style scoped>
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Helps in maintaining uniform column width */
 }
 
-th,
-td {
+th, td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;
+}
+
+th {
+  background-color: #f0f0f0; /* Light grey background for headers */
+}
+
+td {
+  vertical-align: top; /* Aligns content to the top of the cell */
 }
 </style>

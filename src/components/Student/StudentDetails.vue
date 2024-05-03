@@ -1,14 +1,16 @@
 <template>
   <div>
-    
-    <h1>{{ details.firstName}} {{ details.lastName }}</h1>
+
+    <h1>{{ details.firstName }} {{ details.lastName }}</h1>
 
     <h3>Team Name: {{ details.teamName }} - Academic Year: {{ details.academicYear }}</h3>
     <hr>
-
+    <button @click="goToStudentReport">Generate Peer Evaluation Report</button>
+    <button @click="generateWARReport">Generate WAR Report</button>
+    <hr>
     <div>
       <h2>Peer Evaluations</h2>
-      
+
     </div>
     <hr>
     <div>
@@ -41,7 +43,7 @@ export default {
     getDetails() {
       const URL = 'http://localhost:8080/students/' + this.id
       axios.get(URL)
-      .then(response => {
+        .then(response => {
           this.details = response.data.data
           //console.log(response.data.data)
         })
@@ -49,6 +51,12 @@ export default {
           console.error('There was an error!', error.response.data);
         });
     },
+    goToStudentReport() {
+      this.$router.push(`/studentReportByInstructor/${this.id}`);
+    },
+    generateWARReport() {
+      this.$router.push({ name: 'WAR By Team And Week', params: { teamName: this.details.teamName } });
+    }
   }
 }
 </script>
@@ -56,5 +64,19 @@ export default {
 <style scoped>
 input {
   margin: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 </style>

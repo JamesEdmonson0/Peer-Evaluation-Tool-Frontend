@@ -17,8 +17,8 @@
             <tbody>
                 <template v-for="(tasks, student) in groupedReportData">
                     <tr v-for="(submission, index) in tasks" :key="`${student}-${index}`">
-                        <td v-if="index === 0" class="student-name no-border">{{ student }}</td>
-                        <td v-else class="empty-cell"></td>
+                        <td v-if="index === 0" class="student-name">{{ student }}</td>
+                        <td v-else class="empty-cell no-border"></td>
                         <td>{{ submission.taskCategory }}</td>
                         <td>{{ submission.plannedTask }}</td>
                         <td>{{ submission.description }}</td>
@@ -109,7 +109,8 @@ export default {
 }
 
 .student-name {
-    font-weight: bold; /* Make student name bold */
+    font-weight: bold;
+    border: 1px solid black; /* Make student name bold */
 }
 
 .empty-cell {

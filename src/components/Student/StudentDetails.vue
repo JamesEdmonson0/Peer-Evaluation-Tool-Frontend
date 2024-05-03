@@ -1,9 +1,13 @@
+<script setup>
+import DeleteStudentButton from './DeleteStudentButton.vue';
+</script>
 <template>
   <div>
     
     <h1>{{ details.firstName}} {{ details.lastName }}</h1>
 
     <h3>Team Name: {{ details.teamName }} - Academic Year: {{ details.academicYear }}</h3>
+    <DeleteStudentButton :id="id"></DeleteStudentButton>
     <hr>
     <button @click="goToStudentReport">Generate Peer Evaluation Report</button>
     <hr>

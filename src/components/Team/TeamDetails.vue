@@ -1,6 +1,13 @@
+<script setup>
+import RemoveInstructorButton from './RemoveInstructorButton.vue';
+import InstructorSelector from './InstructorSelector.vue';
+</script>
+
 <template>
   <div>
-    <h1>{{ details.teamName }}</h1>
+    <h2>Team Name: {{ details.teamName }}</h2>
+    <h3>Instructor: <InstructorSelector :tid="id">{{ details.instructor.firstName }} {{ details.instructor.lastName }}</InstructorSelector><RemoveInstructorButton></RemoveInstructorButton></h3>
+
   </div>
 </template>
 
@@ -22,6 +29,7 @@ export default {
       const URL = 'http://localhost:8080/teams/' + this.id
       axios.get(URL)
           .then(response => {
+            console.log(response.data.data)
             this.details = response.data.data
           })
           .catch(error => {

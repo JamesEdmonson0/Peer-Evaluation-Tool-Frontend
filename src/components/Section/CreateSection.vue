@@ -1,38 +1,27 @@
 <template>
-
-  <div v-if="rubriChoosen" class="container">
-
-
-  </div>
-
-
-
-
-
-
   <div v-if="!submitted" class="container">
     <form @submit.prevent="submitSection">
       <h1>Create Senior Design Section</h1>
       <div class="form-item">
         <label for="sectionName">Section Name:</label>
-        <input id="sectionName" type="text" v-model="newSectionData.sectionName" required/>
+        <input id="sectionName" type="text" v-model="newSectionData.sectionName" />
       </div>
       <div class="form-item">
         <label for="academicYear">Academic Year:</label>
-        <input id="academicYear" type="text" v-model="newSectionData.academicYear" required/>
+        <input id="academicYear" type="text" v-model="newSectionData.academicYear" />
       </div>
       <div class="form-item">
         <label for="firstDate">First Day:</label>
-        <input id="firstDate" type="text" v-model="newSectionData.firstName" required/>
+        <input id="firstDate" type="text" v-model="newSectionData.firstName" />
       </div>
       <div class="form-item">
         <label for="lastDate">Last Day:</label>
-        <input id="lastDate" type="text" v-model="newSectionData.lastName" required/>
+        <input id="lastDate" type="text" v-model="newSectionData.lastName" />
       </div>
       <div class="form-item">
         <label for="rubric">Select Rubric:</label>
         <select id="rubric" v-model="selectedRubric" required>
-          <option v-for="rubric in rubricList" :key="rubric.id" :value="rubric">{{ rubric.rubricName }}</option>
+          <option v-for="rubric in rubricList" :key="rubric.id" :value="rubric">{{ rubric.rubricName}}</option>
         </select>
       </div>
       <button type="submit">Submit</button>
@@ -51,7 +40,7 @@ export default {
         academicYear: '',
         firstName: '',
         lastName: '',
-        rubricDto: null, // Updated to store rubric ID
+        rubricDto: null, //
       },
       submitted: false,
       rubricList: [], // Array to store fetched rubric list
@@ -79,7 +68,7 @@ export default {
         axios.post('http://localhost:8080/section', this.newSectionData)
             .then(response => {
               this.submitted = true;
-              console.log('Section created:', response.data);
+              console.log('Section created:', response.data.data);
             })
             .catch(error => {
               console.error('Error creating section:', error.response.data);

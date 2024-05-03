@@ -164,8 +164,12 @@ const router = createRouter({
       name: "View Section",
       component: () => import("@/components/Section/ViewSection.vue"),
       props: true,
+    },
 
-
+    {
+      path: "/createSection",
+      name: "Create Section",
+      component: () => import("@/components/Section/CreateSection.vue")
     }
   ],
 

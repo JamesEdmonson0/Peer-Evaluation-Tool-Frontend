@@ -29,6 +29,11 @@ const router = createRouter({
       component: Student,
     },
     {
+      path: "/createRubric",
+      name: "Create Rubric",
+      component: () => import("@/components/Rubric/CreateRubric.vue"),
+    },
+    {
       path: "/searchStudent",
       name: "Search Students",
       component: () => import("@/components/Student/StudentSearch.vue"),
@@ -97,6 +102,13 @@ const router = createRouter({
         import("@/components/PeerEvaluations/PeerEvalByWeekAndSection.vue"),
     },
     {
+      path: "/studentWarReport:teamName/:studentName",
+      name: "View War for student",
+      component: () =>
+        import("@/components/WAR/StudentWARReport.vue"),
+      props: true,
+    },
+    {
       path: "/evalForm",
       name: "Eval Form",
       component: () => import("@/components/PeerEvaluations/EvalForm.vue"),
@@ -139,6 +151,21 @@ const router = createRouter({
       component: () => import("@/components/Team/TeamDetails.vue"),
       props: true,
     },
+
+    {
+
+      path: "/findSection",
+      name: "Find Section",
+      component: () => import("@/components/Section/FindSection.vue")
+    },
+
+    {
+      path: "/viewSection/:id",
+      name: "View Section",
+      component: () => import("@/components/Section/ViewSection.vue")
+
+
+    }
   ],
 
 });

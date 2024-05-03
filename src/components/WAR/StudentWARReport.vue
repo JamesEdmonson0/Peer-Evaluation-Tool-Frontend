@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>WAR Report for team</h1>
+        <h1>WAR Report Student</h1>
         <week-selector @week-changed="handleWeekChange" />
         <table class="report-table" v-if="Object.keys(groupedReportData).length">
             <thead>
@@ -38,9 +38,10 @@
 <script>
 import WeekSelector from '../Utils/WeekSelector.vue';
 import axios from 'axios';
+import { watch } from 'vue';
 
 export default {
-    props: ['teamName'],
+    props: ['teamName', 'studentName'],
     components: {
         WeekSelector
     },
@@ -70,11 +71,13 @@ export default {
         groupReportData(submissions) {
             const grouped = {};
             submissions.forEach(submission => {
-                const key = submission.teamMember;
-                if (!grouped[key]) {
-                    grouped[key] = [];
+                if (submission.teamMember === this.studentName) {  // Filter by studentName
+                    const key = submission.teamMember;
+                    if (!grouped[key]) {
+                        grouped[key] = [];
+                    }
+                    grouped[key].push(submission);
                 }
-                grouped[key].push(submission);
             });
             this.groupedReportData = grouped;
         },
@@ -87,34 +90,50 @@ export default {
     mounted() {
         this.fetchWARReport();
     },
+    watch: {
+        studentName(newName, oldName) {
+            if (newName !== oldName) {
+                this.fetchWARReport();
+            }
+        }
+    }
 }
 </script>
 
 <style scoped>
 .report-table {
     width: 100%;
-    border-collapse: collapse; /* Ensures that the border is neat */
+    border-collapse: collapse;
+    /* Ensures that the border is neat */
 }
 
-.report-table th, .report-table td {
-    border: 1px solid black; /* Borders for each cell */
-    padding: 8px; /* Padding for content inside cells */
-    text-align: left; /* Align text to the left */
+.report-table th,
+.report-table td {
+    border: 1px solid black;
+    /* Borders for each cell */
+    padding: 8px;
+    /* Padding for content inside cells */
+    text-align: left;
+    /* Align text to the left */
 }
 
 .report-table .no-border {
-    border-left: none; /* Remove left border */
-    border-right: none; /* Remove right border */
-    border-top: none; /* Remove top border if desired */
+    border-left: none;
+    /* Remove left border */
+    border-right: none;
+    /* Remove right border */
+    border-top: none;
+    /* Remove top border if desired */
 }
 
 .student-name {
     font-weight: bold;
-    border: 1px solid black; /* Make student name bold */
+    border: 1px solid black;
+    /* Make student name bold */
 }
 
 .empty-cell {
-    border: none; /* Optional: No border for empty cells if needed */
+    border: none;
+    /* Optional: No border for empty cells if needed */
 }
 </style>
-

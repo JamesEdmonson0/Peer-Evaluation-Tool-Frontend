@@ -89,6 +89,13 @@ const router = createRouter({
         import("@/components/PeerEvaluations/PeerEvalByWeekAndSection.vue"),
     },
     {
+      path: "/studentWarReport:teamName/:studentName",
+      name: "View War for student",
+      component: () =>
+        import("@/components/WAR/StudentWARReport.vue"),
+      props: true,
+    },
+    {
       path: "/evalForm",
       name: "Eval Form",
       component: () => import("@/components/PeerEvaluations/EvalForm.vue"),

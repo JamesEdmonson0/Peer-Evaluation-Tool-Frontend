@@ -1,41 +1,34 @@
 <template>
   <div v-if="!submitted" class="container">
     <form @submit.prevent="submitSection" class="section-form">
-      <h1>Create Senior Design Section</h1>
-
-
-
-
-
+      <h1>Editing Section {{ section.sectionName }}</h1>
       <div class="form-item">
         <label for="sectionName">Section Name:</label>
         <div class="input-container">
-          <span class="input-helper">Format: "SectionYYYY-YYYY"</span>
-          <input id="sectionName" type="text" v-model="newSectionData.sectionName" />
+          <input id="sectionName" type="text" v-model="section.sectionName" />
+          <span class="input-helper">Format: "SectionYYYY-YYYY" </span>
         </div>
       </div>
-
-
 
       <div class="form-item">
         <label for="academicYear">Academic Year:</label>
         <div class="input-container">
-          <span class="input-helper">Format: "YYYY"</span>
-          <input id="academicYear" type="text" v-model="newSectionData.academicYear" />
+          <input id="academicYear" type="text" v-model="section.academicYear" />
+          <span class="input-helper">Format: "YYYY" </span>
         </div>
       </div>
       <div class="form-item">
         <label for="firstDate">First Day:</label>
         <div class="input-container">
+          <input id="firstDate" type="text" v-model="section.firstDay" />
           <span class="input-helper">Format: "MM/DD/YYYY"</span>
-          <input id="firstDate" type="text" v-model="newSectionData.firstDay" />
         </div>
       </div>
       <div class="form-item">
         <label for="lastDate">Last Day:</label>
         <div class="input-container">
+          <input id="lastDate" type="text" v-model="section.lastDay" />
           <span class="input-helper">Format: "MM/DD/YYYY"</span>
-          <input id="lastDate" type="text" v-model="newSectionData.lastDay" />
         </div>
       </div>
       <div class="form-item">
@@ -54,13 +47,16 @@
     <RouterLink to="/findSection">Find the created Section</RouterLink>
   </div>
 </template>
-
 <script>
+
 import axios from "axios";
 
 export default {
+  name: "sectionDetails",
+  props: ['id'],
   data() {
     return {
+      section: {},
       newSectionData: {
         sectionName: "",
         academicYear: "",
@@ -74,10 +70,28 @@ export default {
       returnedData: {},
     };
   },
+  created() {
+    this.getDetails();
+  },
+
   mounted() {
     this.fetchRubrics();
   },
+
+
   methods: {
+    getDetails() {
+      const URL = 'http://localhost:8080/section/' + this.id;
+      axios.get(URL)
+          .then(response => {
+            this.section = response.data.data;
+            console.log('Section created:', response.data.data);
+          })
+          .catch(error => {
+            console.error('There was an error!', error.response.data);
+          });
+    },
+
     fetchRubrics() {
       axios.get("http://localhost:8080/rubric/allRubrics")
           .then(response => {
@@ -88,9 +102,10 @@ export default {
             console.error("Error fetching rubrics:", error);
           });
     },
+
     submitSection() {
       this.newSectionData.rubricDto = this.selectedRubric;
-      axios.post("http://localhost:8080/section", this.newSectionData)
+      axios.put("http://localhost:8080/section/" + this.id, this.newSectionData)
           .then(response => {
             this.returnedData = response.data.data;
             this.submitted = true;
@@ -100,9 +115,13 @@ export default {
             console.error("Error creating section:", error.response.data);
           });
     },
-  },
-};
+
+  }
+
+}
 </script>
+
+
 
 <style scoped>
 .container {
@@ -167,3 +186,4 @@ select {
   background-color: #0056b3;
 }
 </style>
+

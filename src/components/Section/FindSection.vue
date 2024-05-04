@@ -18,6 +18,7 @@
           <router-link :to="`/viewSection/${section.id}`">
             <h3>{{ section.sectionName }}</h3>
           </router-link>
+          <router-link :to="`/editSection/${section.id}`">Edit Section</router-link>
           <div class="section-details">
             <div class="field">
               <label>Academic Year:</label>

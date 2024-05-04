@@ -153,7 +153,13 @@ const router = createRouter({
     },
 
     {
+      path: "/editSection/:id",
+      name: "Edit Section",
+      component: () => import("@/components/Section/EditSection.vue"),
+      props: true
 
+    },
+    {
       path: "/findSection",
       name: "Find Section",
       component: () => import("@/components/Section/FindSection.vue")
@@ -172,6 +178,7 @@ const router = createRouter({
       component: () => import("@/components/Section/CreateSection.vue")
 
     }
+
   ],
 
 });

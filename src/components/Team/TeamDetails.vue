@@ -1,3 +1,8 @@
+<script setup>
+import RemoveInstructorButton from './RemoveInstructorButton.vue';
+import InstructorSelector from './InstructorSelector.vue';
+</script>
+
 <template>
   <div>
     <h1>{{ team.teamName }}</h1>
@@ -9,7 +14,7 @@
     </button>
 
     <h3>Instructor</h3>
-    <div>{{ team.instructor.firstName }} {{ team.instructor.lastName }}</div>
+    <div><InstructorSelector :tid="id">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</InstructorSelector><RemoveInstructorButton></RemoveInstructorButton></div>
 
     <button class="btn-primary">Edit Team</button>
 
@@ -60,6 +65,8 @@ export default {
       const URL = 'http://localhost:8080/teams/' + this.id
       axios.get(URL)
           .then(response => {
+            console.log(response.data.data)
+            this.details = response.data.data
             this.team = response.data.data
             console.log(this.team)
           })

@@ -19,6 +19,7 @@
             <h3>{{ section.sectionName }}</h3>
           </router-link>
           <router-link :to="`/editSection/${section.id}`">Edit Section</router-link>
+          <router-link :to="`/setUpActiveWeek/${section.id}`">Set Up Active Week For This Section</router-link>
           <div class="section-details">
             <div class="field">
               <label>Academic Year:</label>

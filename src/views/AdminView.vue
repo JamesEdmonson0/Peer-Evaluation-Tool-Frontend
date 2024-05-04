@@ -11,6 +11,7 @@
           <RouterLink to="/createSection">Create Section</RouterLink>
           <RouterLink to="/findSection">Find Section</RouterLink>
           <RouterLink to="/searchTeam">Search for Teams</RouterLink>
+          <RouterLink to="/assignStudents">Assign Students</RouterLink>
           <RouterLink to="/about">About</RouterLink>
           <LogOutButton></LogOutButton>
         </nav>

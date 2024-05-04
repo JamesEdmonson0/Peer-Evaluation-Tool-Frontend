@@ -176,16 +176,22 @@ const router = createRouter({
       path: "/createSection",
       name: "Create Section",
       component: () => import("@/components/Section/CreateSection.vue")
-
     },
+
 
     {
 
-      path:"/setUpActiveWeek/:id",
+      path: "/setUpActiveWeek/:id",
       name: "Set Up Active Week",
       component: () => import("@/components/Section/SetUpActiveWeek.vue"),
       props: true,
 
+    },
+
+    {
+      path: "/assignStudents",
+      name: "Assign Students",
+      component: () => import("@/components/Student/AssignStudents.vue")
 
     }
 

@@ -1,9 +1,15 @@
+<script setup>
+import DeactivateInstructorButton from './DeactivateInstructorButton.vue';
+import ReactivateInstructorButton from './ReactivateInstructorButton.vue';
+</script>
+
 <template>
     <div>
       
       <h1>{{ details.firstName}} {{ details.lastName }}</h1>
       <h3>Supervised Teams: {{ details.teamName }}</h3>
-
+      <DeactivateInstructorButton :id="id"></DeactivateInstructorButton>
+      <ReactivateInstructorButton :id="id"></ReactivateInstructorButton>
     </div>
   </template>
   

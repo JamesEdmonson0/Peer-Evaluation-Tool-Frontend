@@ -11,10 +11,10 @@ import LogOutButton from '@/components/Users/LogOutButton.vue';
       <HelloWorld msg="You did it, Aliya! Admin Logged In" />
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/createRubric">Create Rubric</RouterLink>
         <RouterLink to="/searchStudent">Search for Students</RouterLink>
         <RouterLink to="/searchInstructor">Search for Instructors</RouterLink>
         <RouterLink to="/createSection">Create Section </RouterLink>
-        <RouterLink to="/editSection">Edit Section </RouterLink>
         <RouterLink to="/findSection">Find Section</RouterLink>
         <RouterLink to="/searchTeam">Search for Teams</RouterLink>
         <RouterLink to="/about">About</RouterLink>

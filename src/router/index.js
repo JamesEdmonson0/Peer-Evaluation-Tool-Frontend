@@ -83,6 +83,19 @@ const router = createRouter({
         import("@/components/PeerEvaluations/StudentReportByStudent.vue"),
     },
     {
+
+      path: '/war/edit',
+      name: 'Edit Submission',
+      component: () => import('@/components/WAR/WAREdit.vue'),
+    },
+
+    {
+      path: '/createSection',
+      name: 'Create Section',
+      component: () => import('@/components/Section/CreateSection.vue')
+    },
+
+    {
       path: "/viewPeerEvalByWeekAndSection",
       name: "View Peer Eval Report By Week And Section",
       component: () =>
@@ -151,10 +164,16 @@ const router = createRouter({
       name: "View Section",
       component: () => import("@/components/Section/ViewSection.vue"),
       props: true,
+    },
 
+    {
+      path: "/createSection",
+      name: "Create Section",
+      component: () => import("@/components/Section/CreateSection.vue")
 
     }
   ],
+
 });
 
 router.beforeEach((to, from, next) => {

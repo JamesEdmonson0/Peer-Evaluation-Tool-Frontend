@@ -63,7 +63,7 @@ export default {
 <style scoped>
 button {
   height: 2.8em;
-  width: 9em;
+  width: 8em;
   background: transparent;
   -webkit-animation: jello-horizontal 0.9s both;
   animation: jello-horizontal 0.9s both;
@@ -71,7 +71,9 @@ button {
   outline: none;
   color: #016dd9;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 button:hover {

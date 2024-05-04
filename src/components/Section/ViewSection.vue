@@ -10,11 +10,11 @@
     </div>
     <div class="field">
       <label>Last Day:</label>
-      <span>{{ section.lastDay }}</span>
+      <span>{{ section.firstDay }}</span>
     </div>
     <div class="field">
       <label>First Day:</label>
-      <span>{{ section.firstDay }}</span>
+      <span>{{ section.lastDay }}</span>
     </div>
     <div class="field">
       <label>Rubric Name:</label>
@@ -22,10 +22,11 @@
     </div>
   </div>
 </template>
-<script setup>
-</script>
 
-<script>
+
+
+<script >
+
 import axios from "axios";
 
 export default {

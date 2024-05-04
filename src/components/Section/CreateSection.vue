@@ -2,6 +2,11 @@
   <div v-if="!submitted" class="container">
     <form @submit.prevent="submitSection" class="section-form">
       <h1>Create Senior Design Section</h1>
+
+
+
+
+
       <div class="form-item">
         <label for="sectionName">Section Name:</label>
         <div class="input-container">
@@ -9,6 +14,9 @@
           <input id="sectionName" type="text" v-model="newSectionData.sectionName" />
         </div>
       </div>
+
+
+
       <div class="form-item">
         <label for="academicYear">Academic Year:</label>
         <div class="input-container">
@@ -41,7 +49,7 @@
   </div>
 
   <div v-else class="container">
-    <h1>Account Successfully Created {{ newSectionData.sectionName }} section</h1>
+    <h1>Successfully Created {{ newSectionData.sectionName }} section</h1>
     <h2>You can view it here</h2>
     <RouterLink to="/findSection">Find the created Section</RouterLink>
   </div>

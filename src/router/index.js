@@ -177,6 +177,16 @@ const router = createRouter({
       name: "Create Section",
       component: () => import("@/components/Section/CreateSection.vue")
 
+    },
+
+    {
+
+      path:"/setUpActiveWeek/:id",
+      name: "Set Up Active Week",
+      component: () => import("@/components/Section/SetUpActiveWeek.vue"),
+      props: true,
+
+
     }
 
   ],

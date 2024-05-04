@@ -24,6 +24,7 @@
           <span class="input-helper">Format: "MM/DD/YYYY"</span>
         </div>
       </div>
+
       <div class="form-item">
         <label for="lastDate">Last Day:</label>
         <div class="input-container">
@@ -31,6 +32,8 @@
           <span class="input-helper">Format: "MM/DD/YYYY"</span>
         </div>
       </div>
+
+
       <div class="form-item">
         <label for="rubric">Select Rubric:</label>
         <select id="rubric" v-model="selectedRubric" class="rubric-select">

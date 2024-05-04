@@ -14,9 +14,11 @@ import InstructorSelector from './InstructorSelector.vue';
     </button>
 
     <h3>Instructor</h3>
-    <div><InstructorSelector :tid="id">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</InstructorSelector><RemoveInstructorButton></RemoveInstructorButton></div>
-
-    <button class="btn-primary">Edit Team</button>
+    <div style="margin-bottom: 10px">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</div>
+    <div><InstructorSelector :tid="id">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</InstructorSelector>
+      <RemoveInstructorButton></RemoveInstructorButton>
+    </div>
+    <button class="btn-primary" @click="editTeamName">Edit Team Name</button>
 
   </div>
 </template>
@@ -50,15 +52,7 @@ export default {
         this.students = new Map();
         await this.getAllResults();
 
-        const URL = "http://localhost:8080/teams/" + this.team.id;
-        axios.put(URL, this.team)
-            .then(response => {
-              console.log(response.data)
-              this.$emit('edited');
-            })
-            .catch(error => {
-              console.error('There was an error :(', error.response.data);
-            });
+        this.updateTeam(id);
       }
     },
     async getDetails() {
@@ -107,6 +101,25 @@ export default {
       } catch (err) {
         console.error('There was an error.', err);
       }
+    },
+    editTeamName() {
+      const userInput = prompt("Please enter the new team name:", this.team.teamName);
+      if (userInput !== null) {
+        alert("Team name successfully changed to " + userInput + ".")
+        this.team.teamName = userInput
+        this.updateTeam(this.team.id)
+      }
+    },
+    updateTeam(id) {
+      const URL = "http://localhost:8080/teams/" + this.team.id;
+      axios.put(URL, this.team)
+          .then(response => {
+            console.log(response.data)
+            this.$emit('edited');
+          })
+          .catch(error => {
+            console.error('There was an error :(', error.response.data);
+          });
     }
   }
 }
@@ -121,7 +134,8 @@ input {
   padding: 10px 20px;
   margin-top: 15px;
   margin-right: 10px;
-  background-color: #4CAF50;
+  margin-bottom: 30px;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 5px;

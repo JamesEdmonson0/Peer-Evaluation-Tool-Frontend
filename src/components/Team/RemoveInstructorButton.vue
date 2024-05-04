@@ -48,9 +48,9 @@ export default {
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 12px;
   padding: 0 18px;
-  line-height: 50px;
+  line-height: 20px;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -69,7 +69,7 @@ export default {
 
 @media (min-width: 768px) {
   .button-74 {
-    min-width: 120px;
+    min-width: 60px;
     padding: 0 25px;
   }
 }

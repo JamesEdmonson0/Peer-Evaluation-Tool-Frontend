@@ -20,6 +20,7 @@
       <label>Rubric Name:</label>
       <span>{{ section.rubricDto.rubricName }}</span>
     </div>
+    <button style="margin-top: 10px;" @click="assignStudents">Assign Students</button>
   </div>
 </template>
 
@@ -51,6 +52,12 @@ export default {
           .catch(error => {
             console.error('There was an error!', error.response.data);
           });
+    },
+    assignStudents() {
+      const userInput = prompt("Please enter the emails of students you are inviting (seperated by a semicolon):", "");
+      if (userInput !== null) {
+        alert("Students successfully emailed")
+      }
     }
   }
 }

@@ -19,7 +19,7 @@ import InstructorSelector from './InstructorSelector.vue';
       <RemoveInstructorButton></RemoveInstructorButton>
     </div>
     <button class="btn-primary" @click="editTeamName">Edit Team Name</button>
-
+    <button class="btn-primary" id="delete" @click="deleteTeam">Delete Team</button>
   </div>
 </template>
 
@@ -107,10 +107,10 @@ export default {
       if (userInput !== null) {
         alert("Team name successfully changed to " + userInput + ".")
         this.team.teamName = userInput
-        this.updateTeam(this.team.id)
+        this.updateTeam()
       }
     },
-    updateTeam(id) {
+    updateTeam() {
       const URL = "http://localhost:8080/teams/" + this.team.id;
       axios.put(URL, this.team)
           .then(response => {
@@ -120,6 +120,22 @@ export default {
           .catch(error => {
             console.error('There was an error :(', error.response.data);
           });
+    },
+    deleteTeam() {
+      let result = confirm(`Are you sure you want to delete team ${this.team.teamName}?`);
+      if (result === true) {
+        const URL = "http://localhost:8080/teams/" + this.team.id;
+        axios.delete(URL)
+            .then(response => {
+              console.log(response.data)
+              this.$emit('edited');
+            })
+            .catch(error => {
+              console.error('There was an error :(', error.response.data);
+            });
+
+        this.$router.back()
+      }
     }
   }
 }
@@ -144,5 +160,9 @@ input {
 
 .btn-primary:hover {
   background-color: #45a049;
+}
+
+#delete:hover {
+  background-color: red;
 }
 </style>

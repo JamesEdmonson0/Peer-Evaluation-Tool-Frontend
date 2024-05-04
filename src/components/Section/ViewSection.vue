@@ -46,6 +46,7 @@ export default {
       axios.get(URL)
           .then(response => {
             this.section = response.data.data;
+            console.log('Section created:', response.data.data);
           })
           .catch(error => {
             console.error('There was an error!', error.response.data);

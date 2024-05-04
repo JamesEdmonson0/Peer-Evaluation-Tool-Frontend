@@ -12,21 +12,31 @@
       </div>
       <div class="form-item">
         <label for="firstDate">First Day:</label>
-        <input id="firstDate" type="text" v-model="newSectionData.firstName" />
+        <input id="firstDate" type="text" v-model="newSectionData.firstDay" />
       </div>
       <div class="form-item">
         <label for="lastDate">Last Day:</label>
-        <input id="lastDate" type="text" v-model="newSectionData.lastName" />
+        <input id="lastDate" type="text" v-model="newSectionData.lastDay" />
       </div>
       <div class="form-item">
         <label for="rubric">Select Rubric:</label>
-        <select id="rubric" v-model="selectedRubric" required>
+        <select id="rubric" v-model="selectedRubric">
           <option v-for="rubric in rubricList" :key="rubric.id" :value="rubric">{{ rubric.rubricName}}</option>
         </select>
       </div>
       <button type="submit">Submit</button>
     </form>
   </div>
+
+  <div v-else class = "container">
+    <h1>Account Successfully Created {{newSectionData.sectionName}} section </h1>
+    <h2> You can view it here</h2>
+    <RouterLink to="/findSection"> Find the created Section </RouterLink>
+
+  </div>
+
+
+
 
 </template>
 
@@ -38,13 +48,14 @@ export default {
       newSectionData: {
         sectionName: '',
         academicYear: '',
-        firstName: '',
-        lastName: '',
+        firstDay: '',
+        lastDay: '',
         rubricDto: null, //
       },
       submitted: false,
-      rubricList: [], // Array to store fetched rubric list
+       rubricList: [], // Array to store fetched rubric list
       selectedRubric: null, // Store selected rubric ID
+      returnedData: {},
     };
   },
   mounted() {
@@ -63,17 +74,18 @@ export default {
           });
     },
     submitSection() {
-      if (confirm('Are you sure you want to submit?')) {
-        this.newSectionData.rubricDto = this.selectedRubric; // Assign selected rubric object
+      //if (confirm('Are you sure you want to submit?')) {
+       this.newSectionData.rubricDto = this.selectedRubric; // Assign selected rubric object
         axios.post('http://localhost:8080/section', this.newSectionData)
             .then(response => {
+              this.returnedData = response.data.data;
               this.submitted = true;
               console.log('Section created:', response.data.data);
             })
             .catch(error => {
               console.error('Error creating section:', error.response.data);
             });
-      }
+    //  }
     },
   },
 };

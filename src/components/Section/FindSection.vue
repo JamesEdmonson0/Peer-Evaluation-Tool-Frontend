@@ -55,6 +55,7 @@ export default {
       try {
         const response = await axios.get(URL);
         this.sections = response.data.data;
+        console.log('Section created:', response.data.data);
       } catch (err) {
         console.error('There was an error.', err);
       }

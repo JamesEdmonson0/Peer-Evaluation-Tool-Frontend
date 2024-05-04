@@ -170,6 +170,7 @@ const router = createRouter({
       path: "/createSection",
       name: "Create Section",
       component: () => import("@/components/Section/CreateSection.vue")
+
     }
   ],
 

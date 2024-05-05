@@ -22,7 +22,7 @@ export default {
             console.log(URL)
             axios.put(URL)
             .then(response => {
-            console.log(response.data.data)
+            console.log(response)
             this.$router.push("/");
             })
             .catch(error => {

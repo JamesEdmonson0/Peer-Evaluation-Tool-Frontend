@@ -1,3 +1,7 @@
+<script setup>
+import InviteInstructor from './InviteInstructor.vue';
+</script>
+
 <template>
   <div class="container">
     <h1>Instructor Search</h1>
@@ -28,6 +32,7 @@
     <div v-else-if="searchPerformed" class="container">
       <h1>No Instructors Found</h1>
       <h2>Would you like to invite one?</h2>
+      <InviteInstructor></InviteInstructor>
     </div>
   </div>
 </template>

@@ -13,11 +13,20 @@ import InstructorSelector from './InstructorSelector.vue';
       {{ student.firstName }} {{ student.lastName }}
     </button>
 
-    <h3>Instructor</h3>
-    <div style="margin-bottom: 10px">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</div>
-    <div><InstructorSelector :tid="id">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</InstructorSelector>
-      <RemoveInstructorButton></RemoveInstructorButton>
+    <div v-if="team.instructor != null">
+      <h3>Instructor</h3>
+      <div style="margin-bottom: 10px">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</div>
+      <div>
+        
+        <RemoveInstructorButton :id="team.instructor.id" :tid="id"></RemoveInstructorButton>
+      </div>
     </div>
+    <div v-else>
+      <h3>Instructor</h3>
+      <InstructorSelector :tid="id">{{ team.instructor.firstName }} {{ team.instructor.lastName }}</InstructorSelector>
+    </div>
+    
+
     <button class="btn-primary" @click="editTeamName">Edit Team Name</button>
     <button class="btn-primary" id="delete" @click="deleteTeam">Delete Team</button>
   </div>

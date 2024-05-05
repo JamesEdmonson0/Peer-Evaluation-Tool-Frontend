@@ -42,10 +42,11 @@ export default {
           const URL = 'http://localhost:8080/instructors/assign/' + this.selectedInstructor.id + '/' + this.tid;
           console.log(URL);
           // Assuming you want to make a POST request to the constructed URL
-          axios.post(URL)
+          axios.put(URL)
             .then(response => {
               // Handle success response if needed
               console.log("Assignment submitted successfully");
+              console.log(response)
             })
             .catch(error => {
               // Handle error response if needed

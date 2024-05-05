@@ -22,7 +22,7 @@ export default {
     test() {
         console.log("Igpay Atinlay")
         if (confirm('Are you sure you want to remove this instructor?')) {
-            const URL = 'http://localhost:8080/instructors/remove/' + this.id + this.tid
+            const URL = 'http://localhost:8080/instructors/remove/' + this.id + '/' + this.tid
             axios.put(URL)
             .then(response => {
             console.log(response.data.data)

@@ -25,9 +25,13 @@
             <div v-for="(student, index) in students.get(team.id)" :key="index">
               {{ student.firstName }} {{ student.lastName }}
             </div>
-            <div>
+            <div v-if="team.instructor != null">
               <div style="font-weight: bold">Instructor:</div>
               <div>{{ team.instructor.firstName }} {{ team.instructor.lastName }}</div>
+            </div>
+            <div v-else>
+              <div style="font-weight: bold">Instructor:</div>
+              <div>None</div>
             </div>
           </div>
           <hr>

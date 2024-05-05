@@ -5,8 +5,12 @@
         <input v-model="username" type="text" placeholder="username"/>
         <input v-model="password" type="password" placeholder="password"/>
         <button type="submit">Login</button>
+        <p v-if="badCreds">Incorrect Username or Password</p>
+        <p v-if="isDisabled">Account is Disabled</p>
       </form>
+      
     </div>
+    
   </div>
 </template>
 
@@ -17,11 +21,15 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      isDisabled: false,
+      badCreds: false
     };
   },
   methods: {
     login() {
+      this.isDisabled = false
+      this.badCreds = false
       const basicAuth = 'Basic ' + btoa(this.username + ":" + this.password);
       axios.post('http://localhost:8080/users/login', {}, { 
         headers: { 'Authorization': basicAuth }
@@ -52,6 +60,13 @@ export default {
         })
         .catch(error => {
           console.error('There was an error!', error.response.data);
+          if(error.response.data.data === "Bad credentials") {
+            this.badCreds = true
+          }
+          if(error.response.data.data === "User is disabled") {
+            this.isDisabled = true
+          }
+
         });
     },
   }

@@ -10,6 +10,7 @@
           <RouterLink to="/searchInstructor">Search for Instructors</RouterLink>
           <RouterLink to="/createSection">Create Section</RouterLink>
           <RouterLink to="/findSection">Find Section</RouterLink>
+          <RouterLink to="/createTeam">Create Team</RouterLink>
           <RouterLink to="/searchTeam">Search for Teams</RouterLink>
           <RouterLink to="/assignStudents">Assign Students</RouterLink>
           <RouterLink to="/about">About</RouterLink>

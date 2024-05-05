@@ -192,9 +192,12 @@ const router = createRouter({
       path: "/assignStudents",
       name: "Assign Students",
       component: () => import("@/components/Student/AssignStudents.vue")
-
-    }
-
+    },
+    {
+      path: "/createTeam",
+      name: "Create Team",
+      component: () => import("@/components/Team/CreateTeam.vue")
+    },
   ],
 
 });
